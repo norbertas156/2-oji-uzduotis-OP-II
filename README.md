@@ -1,13 +1,13 @@
 # 2-oji-uzduotis-OP-
 Objektinio programavimo 2-oji uzduotis
 ------------------------------------------------
-Programa skirtas apskaičiuoti vidurki ir mediana
+Programa skirta apskaičiuoti vidurkį ir medianą
 
-# Kaip veikia
+# Kaip veikia programa
 
   1. Ivedamas vardas ir pavardė
   2. Pasirenkamas pažymiu įvedimo būdas
-  3. Ir pasirenkamas galutinio pazymio skaiciavimo budas(vidurkis, mediana)
+  3. Ir pasirenkamas galutinio pažymio skaičiavimo būdas(vidurkis, mediana)
 
 # Programos veikimo pavyzdys
 
@@ -53,13 +53,13 @@ Pavarde   Vardas    Galutinis(vid.)
 Gelzinis  Deividas  3.20
 Jonaitis  Jonas     6.40
 ```
-Programa realizuota 2 būdais pirmas išsaugant įvestus pažymius į C masyva ir antrasis budas išsaugant pažymius į vektoriu.
+Programa realizuota 2 būdais: pirmasis būdas išsaugant įvestus pažymius į C masyvą, antrasis būdas išsaugant įvestus pažymius į vektorių.
 
 ## Galutinis įvertinimas skaičiuojamas `0.4*pazymiu_vidurkis+0.6*egzamino_pazymys`
 
 # Įdiegimas
- 1. Atsisiuskite faila iš norimo release ir išsiarchyvuokite
- 1. Poto komandineje eilute Iveskite:
+ 1. Atsisiūskite failą iš norimo release ir išsiarchyvuokite
+ 2. Poto komandinėje eilutėje įveskite:
 ```shell
 cd Failas_kuriame_issaugotas_kodas
 g++ main_vector.cpp -o main
