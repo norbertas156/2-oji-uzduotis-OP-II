@@ -5,7 +5,7 @@ Programa skirta apskaičiuoti vidurkį ir medianą
 
 # Kaip veikia programa
 
-  1. Ivedamas vardas ir pavardė
+  1. Įvedamas vardas ir pavardė
   2. Pasirenkamas pažymiu įvedimo būdas
   3. Ir pasirenkamas galutinio pažymio skaičiavimo būdas(vidurkis, mediana)
 
