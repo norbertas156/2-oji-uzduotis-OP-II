@@ -10,7 +10,7 @@ stringstream my_buffer;
 ifstream openf;
 openf.open(file+".txt");
 while(!openf){
-	cout<<"Nerastas "<<file<<".txt failas!"<<endl;
+	cout<<"Nerastas "<<file<<".txt failas! Iveskite is naujo"<<endl;
     cin>>file;
     openf.open(file+".txt");
 }
