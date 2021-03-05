@@ -65,3 +65,12 @@ cd Failas_kuriame_issaugotas_kodas
 g++ main_vector.cpp -o main
 ./main
 ```
+# V0.2
+
+ 1. Pašalintas main_array.cpp
+ 2. main_vector.cpp pervadintas į main.cpp
+ 3. Pridėtas failo skaitymas
+ 4. Pridėtas testinis failas Kursiokai.txt
+ 5. Studentai rikiuojami palei pavardes
+ 6. Rezultatai saugomi į Rezultatai.txt failą
+
