@@ -14,7 +14,7 @@
 #include <random>
 #include <sstream>
 #include <fstream>
-
+#include <functional>
 
 
 using std::cout;
@@ -32,10 +32,21 @@ using std::getline;
 using std::istringstream;
 using std::stringstream;
 using std::swap;
-
-
 using std::setw;
 using std::setprecision;
+
+
+
+struct Studentas{
+string vardas;
+string pavarde;
+double vidurkis;
+int egzaminas;
+double mediana;
+vector <int>pazymiai;
+};
+
+
 
 
 #endif
