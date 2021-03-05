@@ -74,3 +74,12 @@ g++ main_vector.cpp -o main
  5. Studentai rikiuojami palei pavardes
  6. Rezultatai saugomi į Rezultatai.txt failą
 
+# V0.3
+
+ 1. Pridėta galimybė įvesti failo pavadinimą
+ 2. Funkcijos išskaidytos į atskirus .cpp failus
+ 3. Paspartintas rikiavimo greitis
+ 4. Pridėtas EXCEPTION HANDLING
+
+
+
