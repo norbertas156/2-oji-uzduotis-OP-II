@@ -80,6 +80,7 @@ g++ main_vector.cpp -o main
  2. Funkcijos išskaidytos į atskirus .cpp failus
  3. Paspartintas rikiavimo greitis
  4. Pridėtas EXCEPTION HANDLING
+ 5. Pridėtas Funkciju failas, kuriame yra visos programa vykdancios funkcijos
 
 
 
