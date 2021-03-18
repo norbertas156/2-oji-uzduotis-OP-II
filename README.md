@@ -82,5 +82,47 @@ g++ main_vector.cpp -o main
  4. Pridėtas EXCEPTION HANDLING
  5. Pridėtas Funkciju failas, kuriame yra visos programa vykdancios funkcijos
 
+# V0.4 
+  
+ 1. Pridėta galimybė sugeneruoti naują failą
+ 2. Pridėta funkcija rikiuojanti pagal vidurkius
+ 3. Pridėtas studentų rūšiavimas į kietekus ir nelaiminguosius
+ 4. Pridėtas kodo greičio matavimas
 
+### V0.4 analizės rezultatai naudojant failus, sudarytus iš: 1000, 10000, 100000, 1000000, 10000000 įrašų
 
+```shell
+studentai1000.txt failo irasu nuskaitymas uztruko: 0.002976 s
+studentai1000.txt irasu Sortinimo trukme: 0.000992 s
+studentai1000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.000496 s
+studentai1000.txt failo irasu ivedimas i kietekus: 0.009423 s
+studentai1000.txt failo irasu ivedimas i nelaiminguosius: 0.008928 s
+```
+```shell
+studentai10000.txt failo irasu nuskaitymas uztruko: 0.017359 s
+studentai10000.txt irasu Sortinimo trukme: 0.012896 s
+studentai10000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.008433 s
+studentai10000.txt failo irasu ivedimas i kietekus: 0.046128 s
+studentai10000.txt failo irasu ivedimas i nelaiminguosius: 0.037695 s
+```
+```shell
+studentai100000.txt failo irasu nuskaitymas uztruko: 0.220223 s
+studentai100000.txt irasu Sortinimo trukme: 0.162192 s
+studentai100000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.051582 s
+studentai100000.txt failo irasu ivedimas i kietekus: 0.279248 s
+studentai100000.txt failo irasu ivedimas i nelaiminguosius: 0.206831 s
+```
+```shell
+studentai1000000.txt failo irasu nuskaitymas uztruko: 1.63532 s
+studentai1000000.txt irasu Sortinimo trukme: 2.06187 s
+studentai1000000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.45581 s
+studentai1000000.txt failo irasu ivedimas i kietekus: 2.73346 s
+studentai1000000.txt failo irasu ivedimas i nelaiminguosius: 1.95176 s
+```
+```shell
+studentai10000000.txt failo irasu nuskaitymas uztruko: 22.2749 s
+studentai10000000.txt irasu Sortinimo trukme: 25.6804 s
+studentai10000000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 4.64403 s
+studentai10000000.txt failo irasu ivedimas i kietekus: 27.1763 s
+studentai10000000.txt failo irasu ivedimas i nelaiminguosius: 19.5409 s
+```
