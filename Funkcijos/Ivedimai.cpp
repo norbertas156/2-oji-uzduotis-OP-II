@@ -10,7 +10,7 @@ stringstream my_buffer;
 ifstream openf;
 openf.open(file+".txt");
 while(!openf){
-	cout<<"Nerastas "<<file<<".txt failas! Iveskite is naujo"<<endl;
+	cout<<"Nerastas "<<file<<".txt failas!"<<endl;
     cin>>file;
     openf.open(file+".txt");
 }
@@ -18,7 +18,8 @@ auto start = std::chrono::high_resolution_clock::now(); auto st=start;
 my_buffer<<openf.rdbuf();
 openf.close();
  std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
-  std::cout << "Failo nuskaitymas į buferį užtruko: "<< diff.count() << " s\n";
+  std::cout <<file <<".txt failo irasu nuskaitymas uztruko: "<< diff.count() << " s\n";
+
 getline(my_buffer, eil);
 Studentas studentas;
 int j=0;
@@ -47,8 +48,6 @@ while (getline(my_buffer, eil)){
 
 		   
 }
-diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
-  std::cout << "Buferio padalijimas į eilučių vektorių užtruko: "<< diff.count() << " s\n";
 }
 
 void Ivedimas(Studentas &studentas){
@@ -121,4 +120,30 @@ void Ivedimas(Studentas &studentas){
 	}
 	
 	cout<<"Ar norite ivesti dar viena studenta?(t-taip, bet kokia kita raide-ne)"<<endl;
+}
+
+void RandomIvedimas (int n){
+	auto start = std::chrono::high_resolution_clock::now(); auto st=start;
+unsigned seed =std::chrono::system_clock::now().time_since_epoch().count();
+std::mt19937 generator(seed);
+std::uniform_int_distribution<int> distribution(1, 10);
+std::uniform_int_distribution<int> FGdistribution(5, 20);
+string studentaiFile="studentai"+std::to_string(n);
+ofstream fd (studentaiFile+".txt");
+fd<<left<<setw(15)<<"Vardas"<<left<<setw(20)<<"Pavarde";
+int GradeCount=FGdistribution(generator);
+for (int i=0; i<GradeCount; i++){
+	fd<<left<<setw(15)<<"ND"+std::to_string(i+1);
+}
+fd<<left<<setw(15)<<"Egz."<<endl;
+for(int i=0; i<n; i++){
+	fd<<left<<setw(15)<<"Vardas"+std::to_string(i+1)<<left<<setw(20)<<"Pavarde"+std::to_string(i+1);
+	for(int j=0; j<GradeCount; j++){
+		fd<<left<<setw(15)<<distribution(generator);
+	}
+	fd<<left<<setw(15)<<distribution(generator)<<endl;
+}
+fd.close();
+ std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
+  std::cout << "Failo sukurimas uztruko: "<< diff.count() << " s\n";
 }

@@ -37,6 +37,7 @@ while (n<0 || n>10){
 }
 return n;
 }
+
 bool filetikrinimas(int n){
 if(n>0 && n<11){
 	return true;

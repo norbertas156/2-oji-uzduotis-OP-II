@@ -33,3 +33,25 @@ sort(studentai.begin(), studentai.end(),
  //std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
   //std::cout << "Sortinimo trukme: "<< diff.count() << " s\n";
 }
+
+void filtras (vector<Studentas> &studentai, vector<Studentas> &kietekai, vector<Studentas> &nelaimingieji, string file){
+	int Studkiekis=studentai.size();
+	auto start = std::chrono::high_resolution_clock::now(); auto st=start;
+sort(studentai.begin(), studentai.end(),
+       [](const Studentas &a, const Studentas &b) {
+         return (a.vidurkis>b.vidurkis);
+       });
+	    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
+  std::cout <<file <<".txt irasu Sortinimo trukme: "<< diff.count() << " s\n";
+  auto start2 = std::chrono::high_resolution_clock::now(); auto st2=start2;
+  for(int i=0; i<Studkiekis; i++){
+	  if(studentai[i].vidurkis>=5.00){
+		  kietekai.push_back(studentai[i]);
+	  }
+	  else {
+		  nelaimingieji.push_back(studentai[i]);
+	  }
+  }
+  std::chrono::duration<double> diff2 = std::chrono::high_resolution_clock::now()-start2; // Skirtumas (s)
+  std::cout <<file <<".txt irasu dalijimo i kietekus ir nelaiminguosius trukme: "<< diff2.count() << " s\n";
+}
