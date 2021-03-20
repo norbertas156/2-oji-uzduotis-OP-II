@@ -15,7 +15,7 @@ int main(){
 	while(a=="t"){
 		cin.clear();
 		cout<<"Kiek studentu norite?"<<endl;
-		cin>>studSk;
+		studSk=StudentuSK();
 		RandomIvedimas(studSk);
 		cout<<"Ar norite sugeneruoti dar viena faila(t-taip)?"<<endl;
 		cin>>a;
