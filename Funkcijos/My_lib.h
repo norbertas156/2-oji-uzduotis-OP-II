@@ -15,6 +15,8 @@
 #include <sstream>
 #include <fstream>
 #include <functional>
+#include <list>
+#include <deque>
 
 
 using std::cout;
@@ -34,6 +36,9 @@ using std::stringstream;
 using std::swap;
 using std::setw;
 using std::setprecision;
+using std::list;
+using std::deque;
+using std::exception;
 
 
 

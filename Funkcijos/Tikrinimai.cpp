@@ -44,3 +44,15 @@ if(n>0 && n<11){
 }
 else return false;
 }
+
+int StudentuSK(){
+	int n;
+cin>>n;
+	 while(n<1){
+	cout<<"Bloga Ivestis. Prasome ivesti skaciu didesni uz 1"<<endl;
+	cin.clear();
+	cin.ignore();	
+	cin>>n;
+	 }
+return n;
+ }

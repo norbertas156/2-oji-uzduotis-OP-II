@@ -2,12 +2,39 @@
 #include "Funkcijos/Main_h.h"
 #include "Funkcijos/Funkcijos.h"
 
+void pasirinkimai (){
+cout<<"Iveskite 1 spartos analize atlikti naudojant vector konteineri"<<
+"\nIveskite 2 spartos analize atlikti naudojant deque konteineri"<<
+"\nIveskite 3 spartos analize atlikti naudojant list konteineri"<<endl;
+}
+
 
 int main(){
+	string pasirinkimas;
+	int spartosP;
+	cout<<"Ar norite atlikti spartos analize(b) ar norite ivesti ranka(r)?"<<endl;
+	cin>>pasirinkimas;
+	while(pasirinkimas!="b" && pasirinkimas!="r"){
+		cin.clear();
+		cout<<"Neteisinga ivestis. Iveskite b arba r!"<<endl;
+		cin>>pasirinkimas;
+	}
+	if(pasirinkimas=="b"){
+		pasirinkimai();
+		cin>>spartosP;
+		while(spartosP<1 || spartosP>3){
+			cin.clear();
+			cin.ignore();
+			cout<<"Bloga ivestis. Prasome "<<endl;
+			pasirinkimai();
+			cin>>spartosP;
+		}
+	benchmark(spartosP);
+	}
+	else{
 	vector <Studentas> studentai;
 	vector<Studentas> kietekai;
 	vector<Studentas> nelaimingieji;
-	string pasirinkimas;
 	cout<<"Ar norite failus generuoti failus(t-taip)?"<<endl;
 	string a;
 	int studSk;
@@ -76,5 +103,5 @@ int main(){
 			std::cerr<<e.what()<<endl;
 		}
 	
-	
+	}
 }
