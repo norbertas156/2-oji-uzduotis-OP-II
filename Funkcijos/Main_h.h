@@ -3,11 +3,14 @@
 #include "My_lib.h"
 #include "Isvedimai.cpp"
 #include "Ivedimai.cpp"
+#include "Benchmark.cpp"
 
 
-void fileIvedimas (vector <Studentas> &studentai, string file);
+void fileIvedimas (Studentas &studentai, string file);
 void Ivedimas(Studentas &studentas);
-void Isvedimas(vector<Studentas> &studentas);
-void fileIsvedimas(vector<Studentas> &studentas);
+void Isvedimas(Studentas &studentas);
+void fileIsvedimas(Studentas &studentas);
+void ListIsvedimas(list<Studentas> &studentas);
+void benchmark(int pasirinkimas);
 
 #endif

@@ -74,8 +74,8 @@ else
 }
 pushf.close();
 }
-
-void FiltroIsvedimas (vector <Studentas> &kietekai, vector <Studentas> &nelaimingieji, string file){
+template <class X>
+void FiltroIsvedimas (X &kietekai, X &nelaimingieji, string file){
 	ofstream pushK ("Kietekai.txt");
 	ofstream pushN("Nelaimingieji.txt");
 	auto start = std::chrono::high_resolution_clock::now(); auto st=start;
@@ -88,7 +88,7 @@ for(int i=0; i<kietekai.size(); i++){
 }
 pushK.close();
 std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
-  std::cout<<file << ".txt failo irasu ivedimas i kietekus: "<< diff.count() << " s\n";
+  cout<<file << ".txt failo irasu ivedimas i kietekus: "<< diff.count() << " s\n";
 auto start2 = std::chrono::high_resolution_clock::now(); auto st2=start2;
 pushN<<left<<setw(20)<<"Pavarde"<<left<<setw(15)<<"Vardas"<<left<<setw(15)<<"Galutinis(vid.)"<<endl;
 pushN<<"-----------------------------------------------------"<<endl;
@@ -99,7 +99,36 @@ for(int i=0; i<nelaimingieji.size(); i++){
 }
 pushN.close();
 std::chrono::duration<double> diff2 = std::chrono::high_resolution_clock::now()-start2; // Skirtumas (s)
-  std::cout <<file << ".txt failo irasu ivedimas i nelaiminguosius: "<< diff2.count() << " s\n";
+  cout <<file << ".txt failo irasu ivedimas i nelaiminguosius: "<< diff2.count() << " s\n";
+}
+
+
+void ListIsvedimas (list<Studentas> &kietekai, list<Studentas> &nelaimingieji, string file){
+	std::list<Studentas>::iterator it;
+	ofstream pushK ("Kietekai.txt", std::ofstream::out | std::ofstream::trunc);
+	ofstream pushN("Nelaimingieji.txt", std::ofstream::out | std::ofstream::trunc);
+	auto start = std::chrono::high_resolution_clock::now(); auto st=start;
+	pushK<<left<<setw(20)<<"Pavarde"<<left<<setw(15)<<"Vardas"<<left<<setw(15)<<"Galutinis(vid.)"<<endl;
+pushK<<"-----------------------------------------------------"<<endl;
+for(it=kietekai.begin(); it!=kietekai.end(); ++it){
+	pushK<<left<<setw(20)<<it->pavarde;
+	pushK<<left<<setw(15)<<it->vardas;
+	pushK<<left<<setw(15)<<fixed<<setprecision(2)<<it->vidurkis<<endl;
+}
+pushK.close();
+std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
+  cout<<file << ".txt failo irasu ivedimas i kietekus: "<< diff.count() << " s\n";
+auto start2 = std::chrono::high_resolution_clock::now(); auto st2=start2;
+pushN<<left<<setw(20)<<"Pavarde"<<left<<setw(15)<<"Vardas"<<left<<setw(15)<<"Galutinis(vid.)"<<endl;
+pushN<<"-----------------------------------------------------"<<endl;
+for(it=nelaimingieji.begin(); it!=nelaimingieji.end(); ++it){
+	pushN<<left<<setw(20)<<it->pavarde;
+	pushN<<left<<setw(15)<<it->vardas;
+	pushN<<left<<setw(15)<<fixed<<setprecision(2)<<it->vidurkis<<endl;
+}
+pushN.close();
+std::chrono::duration<double> diff2 = std::chrono::high_resolution_clock::now()-start2; // Skirtumas (s)
+  cout <<file << ".txt failo irasu ivedimas i nelaiminguosius: "<< diff2.count() << " s\n";
 }
 
 

@@ -1,9 +1,8 @@
 #include "My_lib.h"
 #include "Funkcijos.h"
 
-
-void fileIvedimas (vector <Studentas> &studentai, string file){
-
+template <class X>
+void fileIvedimas (X &studentai, string file){
 string eil;
 int pazymys;
 stringstream my_buffer;
