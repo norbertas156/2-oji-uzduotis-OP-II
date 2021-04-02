@@ -135,7 +135,9 @@ studentai10000000.txt failo irasu ivedimas i nelaiminguosius: 19.5409 s
 ### Kompiuterio specifikacijos: 
 
   Procesorius Intel(R) Core(TM) I5-6500 3.2 GHz
+  
   24 Gb RAM 2133 MHz
+  
   SSD ATA Samsung 850 SCSI
   
 ### Rezultatai
