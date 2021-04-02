@@ -89,7 +89,7 @@ g++ main_vector.cpp -o main
  3. Pridėtas studentų rūšiavimas į kietekus ir nelaiminguosius
  4. Pridėtas kodo greičio matavimas
 
-### V0.4 analizės rezultatai naudojant failus, sudarytus iš: 1000, 10000, 100000, 1000000, 10000000 įrašų
+## V0.4 analizės rezultatai naudojant failus, sudarytus iš: 1000, 10000, 100000, 1000000, 10000000 įrašų
 
 ```shell
 studentai1000.txt failo irasu nuskaitymas uztruko: 0.002976 s
@@ -126,3 +126,33 @@ studentai10000000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 4.644
 studentai10000000.txt failo irasu ivedimas i kietekus: 27.1763 s
 studentai10000000.txt failo irasu ivedimas i nelaiminguosius: 19.5409 s
 ```
+# V0.5 
+  
+ 1. Pridėta galimybė atlikti duomenų spartos analize naudojant skirtingo tipo konteinerius
+ 2. Pridėtas EXCEPTION gaudymas, kuris apsaugo duomenų spartos analizę
+
+## V0.5 analizės rezultatai naudojant failus, sudarytus iš: 1000, 10000, 100000, 1000000, 10000000 įrašų.
+### Kompiuterio specifikacijos: 
+
+  Procesorius Intel(R) Core(TM) I5-6500 3.2 GHz
+  24 Gb RAM 2133 MHz
+  SSD ATA Samsung 850 SCSI
+  
+### Rezultatai
+
+VECTOR                          |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+--------------------------------|--------|-------|--------|---------|----------|
+duomenų nuskaitymą iš failų     | 0.002  | 0.017 | 0.221  |  1.635  |   22.27  |
+studentų rūšiąvimą į dvi grupes | 0.0004 | 0.008 | 0.051  |  0.455  |   4.644  |
+--------------------------------------------------------------------------------
+LIST                            |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+--------------------------------|--------|-------|--------|---------|----------|
+duomenų nuskaitymą iš failų     | 0.003  | 0.02  | 0.143  |  1.749  |   24.73  |
+studentų rūšiąvimą į dvi grupes | 0.0004 | 0.004 | 0.062  |  0.661  |   6.870  |
+--------------------------------------------------------------------------------
+DEQUE                           |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+--------------------------------|--------|-------|--------|---------|----------|
+duomenų nuskaitymą iš failų     | 0.003  | 0.023 | 0.142  |  1.702  |   23.51  |
+studentų rūšiąvimą į dvi grupes | 0.0009 | 0.005 | 0.054  |  0.551  |   6.065  |
+
+
