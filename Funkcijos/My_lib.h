@@ -39,6 +39,7 @@ using std::setprecision;
 using std::list;
 using std::deque;
 using std::exception;
+using std::remove;
 
 
 

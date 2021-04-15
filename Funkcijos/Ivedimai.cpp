@@ -13,12 +13,10 @@ while(!openf){
     cin>>file;
     openf.open(file+".txt");
 }
-auto start = std::chrono::high_resolution_clock::now(); auto st=start;
+
 my_buffer<<openf.rdbuf();
 openf.close();
- std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
-  std::cout <<file <<".txt failo irasu nuskaitymas uztruko: "<< diff.count() << " s\n";
-
+auto start = std::chrono::high_resolution_clock::now(); auto st=start;
 getline(my_buffer, eil);
 Studentas studentas;
 int j=0;
@@ -47,6 +45,8 @@ while (getline(my_buffer, eil)){
 
 		   
 }
+std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
+  std::cout <<file <<".txt failo irasu nuskaitymas uztruko: "<< diff.count() << " s\n";
 }
 
 void Ivedimas(Studentas &studentas){
@@ -126,7 +126,7 @@ void RandomIvedimas (int n){
 unsigned seed =std::chrono::system_clock::now().time_since_epoch().count();
 std::mt19937 generator(seed);
 std::uniform_int_distribution<int> distribution(1, 10);
-std::uniform_int_distribution<int> FGdistribution(5, 20);
+std::uniform_int_distribution<int> FGdistribution(5, 15);
 string studentaiFile="studentai"+std::to_string(n);
 ofstream fd (studentaiFile+".txt");
 fd<<left<<setw(15)<<"Vardas"<<left<<setw(20)<<"Pavarde";
@@ -145,4 +145,60 @@ for(int i=0; i<n; i++){
 fd.close();
  std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
   std::cout << "Failo sukurimas uztruko: "<< diff.count() << " s\n";
+}
+
+template <class Z>
+void BenchmarkIvedimas (Z &studentai, string file){
+string eil;
+int pazymys;
+stringstream my_buffer;
+ifstream openf;
+try{
+	openf.open(file+".txt");
+  if(!openf){
+    throw file;
+  }
+ 
+my_buffer<<openf.rdbuf();
+openf.close();
+ 
+ auto start = std::chrono::high_resolution_clock::now(); auto st=start;
+getline(my_buffer, eil);
+Studentas studentas;
+int j=0;
+while (getline(my_buffer, eil)){
+		studentas.pazymiai.clear();
+		j++;
+		istringstream is(eil);
+		is>>studentas.vardas>>studentas.pavarde;
+			while(is>>pazymys){
+				if(filetikrinimas(pazymys)){
+					studentas.pazymiai.push_back(pazymys);	
+				}
+				else 
+				break;		
+			}
+		if(filetikrinimas(pazymys)){
+			studentas.pazymiai.pop_back();
+		studentas.egzaminas=pazymys;
+		vidurkis(studentas);
+		mediana(studentas);
+		studentai.push_back(studentas);	 
+		}
+		else{
+			throw j;
+		}   
+}
+std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
+  std::cout <<file <<".txt failo irasu nuskaitymas uztruko: "<< diff.count() << " s\n";
+}
+catch(string file){
+cout<<"Neegzistuoja "<<file<<".txt "<<"failas. Duomenu spartos analize nutraukiama"<<endl;
+exit(0);
+}
+catch(int j){
+  cout<<"Faile "<<file<<".txt "<<j+1<<"-eiluteje yra klaida. Duomenu spartos analize nutraukiama"<<endl;
+  exit(0);
+}
+
 }

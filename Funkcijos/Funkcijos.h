@@ -10,6 +10,7 @@ int Paztikrinimas();
 bool filetikrinimas(int n);
 void vidurkis(Studentas &studentas);
 void mediana(Studentas &studentas);
-void sorting(Studentas &studentas);
+bool compare(const Studentas &studentas1, const Studentas &studentas2);
+auto Find (const Studentas &studentas);
 
 #endif 

@@ -8,6 +8,7 @@
 
 void fileIvedimas (Studentas &studentai, string file);
 void Ivedimas(Studentas &studentas);
+void BenchmarkIvedimas (Studentas &studentai, string file);
 void Isvedimas(Studentas &studentas);
 void fileIsvedimas(Studentas &studentas);
 void ListIsvedimas(list<Studentas> &studentas);

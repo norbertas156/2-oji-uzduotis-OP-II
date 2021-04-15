@@ -1,80 +1,20 @@
 #include "My_lib.h"
 #include "Funkcijos.h"
 #include "Main_h.h"
-
-bool compare (const Studentas &studentas1, const Studentas &studentas2){
-return studentas1.vidurkis>studentas2.vidurkis;
-}
-
-template <class X>
-void BenchmarkIvedimas (X &studentai, string file){
-string eil;
-int pazymys;
-stringstream my_buffer;
-ifstream openf;
-try{
-	openf.open(file+".txt");
-  if(!openf){
-    throw file;
-  }
-  
-my_buffer<<openf.rdbuf();
-openf.close();
-auto start = std::chrono::high_resolution_clock::now(); auto st=start;
-getline(my_buffer, eil);
-Studentas studentas;
-int j=0;
-while (getline(my_buffer, eil)){
-		studentas.pazymiai.clear();
-		j++;
-		istringstream is(eil);
-		is>>studentas.vardas>>studentas.pavarde;
-			while(is>>pazymys){
-				if(filetikrinimas(pazymys)){
-					studentas.pazymiai.push_back(pazymys);	
-				}
-				else 
-				break;		
-			}
-		if(filetikrinimas(pazymys)){
-			studentas.pazymiai.pop_back();
-		studentas.egzaminas=pazymys;
-		vidurkis(studentas);
-		mediana(studentas);
-		studentai.push_back(studentas);	 
-		}
-		else{
-			throw j;
-		}   
-}
-	std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
-  std::cout <<file <<".txt failo irasu nuskaitymas uztruko: "<< diff.count() << " s\n";
-
-}
-catch(string file){
-cout<<"Neegzistuoja "<<file<<".txt "<<"failas. Duomenu spartos analize nutraukiama"<<endl;
-exit(0);
-}
-catch(int j){
-  cout<<"Faile "<<file<<".txt "<<j+1<<"-eiluteje yra klaida. Duomenu spartos analize nutraukiama"<<endl;
-  exit(0);
-}
-
-}
+#include "Strategija2.cpp"
 
 void filtrasVector (vector<Studentas> &studentai, vector<Studentas> &kietekai, vector<Studentas> &nelaimingieji, string file){
-	int Studkiekis=studentai.size();
+  vector<Studentas>::iterator it;
 	auto start = std::chrono::high_resolution_clock::now(); auto st=start;
 sort(studentai.begin(), studentai.end(),compare);
 	    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
   cout <<file <<".txt irasu Sortinimo trukme: "<< diff.count() << " s\n";
   auto start2 = std::chrono::high_resolution_clock::now(); auto st2=start2;
-  for(int i=0; i<Studkiekis; i++){
-	  if(studentai[i].vidurkis>=5.00){
-		  kietekai.push_back(studentai[i]);
-	  }
-	  else {
-		  nelaimingieji.push_back(studentai[i]);
+    for(it=studentai.begin(); it!=studentai.end(); ++it){
+	  if(it->vidurkis<5.00){
+		  kietekai.assign(studentai.begin(), it);  
+      nelaimingieji.assign(it, studentai.end());
+      break;
 	  }
   }
   std::chrono::duration<double> diff2 = std::chrono::high_resolution_clock::now()-start2; // Skirtumas (s)
@@ -82,18 +22,17 @@ sort(studentai.begin(), studentai.end(),compare);
 }
 
 void filtrasDeque (deque<Studentas> &studentai, deque<Studentas> &kietekai, deque<Studentas> &nelaimingieji, string file){
-	int Studkiekis=studentai.size();
+  deque<Studentas>::iterator it;
 	auto start = std::chrono::high_resolution_clock::now(); auto st=start;
-sort(studentai.begin(), studentai.end(),compare);
+  sort(studentai.begin(), studentai.end(),compare);
 	    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
   cout <<file <<".txt irasu Sortinimo trukme: "<< diff.count() << " s\n";
   auto start2 = std::chrono::high_resolution_clock::now(); auto st2=start2;
-  for(int i=0; i<Studkiekis; i++){
-	  if(studentai[i].vidurkis>=5.00){
-		  kietekai.push_back(studentai[i]);
-	  }
-	  else {
-		  nelaimingieji.push_back(studentai[i]);
+   for(it=studentai.begin(); it!=studentai.end(); ++it){
+	  if(it->vidurkis<5.00){
+		  kietekai.assign(studentai.begin(), it);  
+      nelaimingieji.assign(it, studentai.end());
+      break;
 	  }
   }
   std::chrono::duration<double> diff2 = std::chrono::high_resolution_clock::now()-start2; // Skirtumas (s)
@@ -120,9 +59,10 @@ void filtrasList (list<Studentas> &studentai, list<Studentas> &kietekai, list<St
   cout <<file <<".txt irasu dalijimo i kietekus ir nelaiminguosius trukme: "<< diff2.count() << " s\n";
 }
 
-void benchmark (int pasirinkimas){
+void benchmark (int pasirinkimas, int strategija){
 string file;
 file="studentai1000";
+if(strategija == 1){
 if(pasirinkimas == 1){
     vector<Studentas> studentai;
     vector<Studentas> kietekai;
@@ -182,6 +122,69 @@ else {
     cout<<"Programos trukme: "<<diff.count()<<" s"<<endl;
     cout<<""<<endl;
     }
+
+}
+}
+else{
+if(pasirinkimas == 1){
+    vector<Studentas> studentai;
+    vector<Studentas> nelaimingieji;
+    for(int i=0; i<5; i++){
+    auto start = std::chrono::high_resolution_clock::now(); auto st=start;
+    BenchmarkIvedimas(studentai, file);
+    filtrasVectorStrategija2(studentai, nelaimingieji, file);
+    FiltroIsvedimas(studentai, nelaimingieji, file);
+    file=file+"0";
+    if(i!=4){
+    studentai.clear();
+    nelaimingieji.clear();
+    }
+    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start;
+    cout<<"Programos trukme: "<<diff.count()<<endl;
+    cout<<""<<endl; 
+    }  
+}
+else if(pasirinkimas == 2){ 
+    deque<Studentas> studentai;
+    deque<Studentas> nelaimingieji;
+    for(int i=0; i<5; i++){
+    auto start = std::chrono::high_resolution_clock::now(); auto st=start;
+    BenchmarkIvedimas(studentai, file);
+    filtrasDequeStrategija2(studentai, nelaimingieji, file);
+    FiltroIsvedimas(studentai, nelaimingieji, file);
+    file=file+"0";
+    if(i!=4){
+    studentai.clear();
+    nelaimingieji.clear();
+    }
+    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start;
+    cout<<"Programos trukme: "<<diff.count()<<endl;
+    cout<<""<<endl; 
+    }
+}
+else {
+    list<Studentas> studentai;
+    list<Studentas> nelaimingieji; 
+    for(int i=0; i<5; i++){
+    auto start = std::chrono::high_resolution_clock::now(); auto st=start;
+    BenchmarkIvedimas(studentai, file);
+    filtrasListStrategija2(studentai, nelaimingieji, file);
+    ListIsvedimas(studentai, nelaimingieji, file);
+    file=file+"0";
+    if(i!=4){
+    studentai.clear();
+    nelaimingieji.clear();
+    }
+    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start;
+    cout<<"Programos trukme: "<<diff.count()<<" s"<<endl;
+    cout<<""<<endl;
+    }
+
+}
+
+
+
+
 }
 }
 
