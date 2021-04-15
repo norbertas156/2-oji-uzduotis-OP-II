@@ -9,7 +9,12 @@ Programa skirta apskaičiuoti vidurkį ir medianą
   2. Pasirenkamas pažymiu įvedimo būdas
   3. Ir pasirenkamas galutinio pažymio skaičiavimo būdas(vidurkis, mediana)
 
-# Programos veikimo pavyzdys
+# Galutinis programos veikimo funkcijos
+
+  1. Pasirinkus pradžioje b kodas vykdo duomenų spartos analizes 
+  2. Pasirinkus pradžioje r kodas vykdo vartotojo įvesties ir failu normalų veikima
+
+# Programos veikimo pavyzdys vykdant normalų veikima
 
 ```shell
 Iveskite varda
@@ -54,6 +59,54 @@ Gelzinis  Deividas  3.20
 Jonaitis  Jonas     6.40
 ```
 Programa realizuota 2 būdais: pirmasis būdas išsaugant įvestus pažymius į C masyvą, antrasis būdas išsaugant įvestus pažymius į vektorių.
+
+# Programos veikimo pavyzdys vykdant duomenų spartos analize
+
+```
+Ar norite atlikti spartos analize(b) ar norite ivesti ranka(r)?
+b
+Iveskite 1 norint atlikti spartos analize naudojant 2 naujus konteinerius
+Iveskite 2 norint atlikti spartos analize naudojant 1 nauja konteineri
+2
+Iveskite 1 spartos analize atlikti naudojant vector konteineri
+Iveskite 2 spartos analize atlikti naudojant deque konteineri
+Iveskite 3 spartos analize atlikti naudojant list konteineri
+1
+studentai1000.txt failo irasu nuskaitymas uztruko: 0.007006 s
+studentai1000.txt irasu Sortinimo trukme: 0.000977 s
+studentai1000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0 s
+studentai1000.txt failo irasu ivedimas i kietekus: 0.003999 s
+studentai1000.txt failo irasu ivedimas i nelaiminguosius: 0.002994 s
+Programos trukme: 0.083776
+
+studentai10000.txt failo irasu nuskaitymas uztruko: 0.037898 s
+studentai10000.txt irasu Sortinimo trukme: 0.013963 s
+studentai10000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.001996 s
+studentai10000.txt failo irasu ivedimas i kietekus: 0.042885 s
+studentai10000.txt failo irasu ivedimas i nelaiminguosius: 0.02293 s
+Programos trukme: 0.148602
+
+studentai100000.txt failo irasu nuskaitymas uztruko: 0.268789 s
+studentai100000.txt irasu Sortinimo trukme: 0.157575 s
+studentai100000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.019501 s
+studentai100000.txt failo irasu ivedimas i kietekus: 0.318164 s
+studentai100000.txt failo irasu ivedimas i nelaiminguosius: 0.208948 s
+Programos trukme: 1.14353
+
+studentai1000000.txt failo irasu nuskaitymas uztruko: 3.1321 s
+studentai1000000.txt irasu Sortinimo trukme: 2.02982 s
+studentai1000000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.223389 s
+studentai1000000.txt failo irasu ivedimas i kietekus: 2.83721 s
+studentai1000000.txt failo irasu ivedimas i nelaiminguosius: 1.99988 s
+Programos trukme: 12.099
+
+studentai10000000.txt failo irasu nuskaitymas uztruko: 29.7123 s
+studentai10000000.txt irasu Sortinimo trukme: 25.5751 s
+studentai10000000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 2.28666 s
+studentai10000000.txt failo irasu ivedimas i kietekus: 28.6697 s
+studentai10000000.txt failo irasu ivedimas i nelaiminguosius: 19.8364 s
+Programos trukme: 121.437
+```
 
 ## Galutinis įvertinimas skaičiuojamas `0.4*pazymiu_vidurkis+0.6*egzamino_pazymys`
 
@@ -162,4 +215,50 @@ DEQUE                           |  1000  | 10000 | 100000 | 1000000 | 10000000 |
 duomenų nuskaitymą iš failų     | 0.008  | 0.044 | 0.286  |  3.339  |   31.96  |
 studentų rūšiąvimą į dvi grupes | 0.0009 | 0.005 | 0.054  |  0.551  |   6.411  |
 
+# V1.0
 
+ 1. Pridėta galimybė atlikti duomenų spartos analize naudojant skirtingus filtravimo metodus ty. filtruojant į tik vieną naują konteinerį
+ 2. Paspartintas vector, deque veikimas naudojant assign
+ 3. Sukurtas cmake failas
+ 4. Atnaujinta naudojimo instrukcija
+
+## 1 strategijos atnaujinti rezultatai
+
+VECTOR                          |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+--------------------------------|--------|-------|--------|---------|----------|
+duomenų nuskaitymą iš failų     | 0.008  | 0.038 | 0.268  |  3.180  |   30.06  |
+studentų rūšiąvimą į dvi grupes | 0      | 0.001 | 0.034  |  0.329  |   3.392  |
+--------------------------------------------------------------------------------
+LIST                            |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+--------------------------------|--------|-------|--------|---------|----------|
+duomenų nuskaitymą iš failų     | 0.007  | 0.036 | 0.276  |  3.263  |   30.29  |
+studentų rūšiąvimą į dvi grupes |  0.001 | 0.003 | 0.065  |  0.642  |  6.426   |
+--------------------------------------------------------------------------------
+DEQUE                           |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+--------------------------------|--------|-------|--------|---------|----------|
+duomenų nuskaitymą iš failų     | 0.007  | 0.036 | 0.269  |  3.163  |   31.59  |
+studentų rūšiąvimą į dvi grupes | 0      | 0.003 | 0.043  |  0.427  |   4.420  |
+
+## 2 strategijos atnaujinti rezultatai
+
+VECTOR                          |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+--------------------------------|--------|-------|--------|---------|----------|
+duomenų nuskaitymą iš failų     | 0.007  | 0.036 | 0.274  |  3.134  |   30.00  |
+studentų rūšiąvimą į dvi grupes | 0      | 0.0009| 0.022  |  0.212  |   2.290  |
+--------------------------------------------------------------------------------
+LIST                            |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+--------------------------------|--------|-------|--------|---------|----------|
+duomenų nuskaitymą iš failų     | 0.007  | 0.036 | 0.280  |  3.214  |   30.57  |
+studentų rūšiąvimą į dvi grupes | 0.0009 | 0.002 | 0.038  |  0.441  |   4.266  |
+--------------------------------------------------------------------------------
+DEQUE                           |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+--------------------------------|--------|-------|--------|---------|----------|
+duomenų nuskaitymą iš failų     | 0.006  | 0.039 | 0.277  |  3.145  |   29.32  |
+studentų rūšiąvimą į dvi grupes | 0.0009 | 0.002 | 0.024  |  0.286  |   3.022  |
+
+## Optimizuoto Vektoriaus rezultatai(naudojant find_if)
+
+VECTOR                          |  1000  | 10000 | 100000 | 1000000 | 10000000 |
+--------------------------------|--------|-------|--------|---------|----------|
+duomenų nuskaitymą iš failų     | 0.007  | 0.041 | 0.268  |  3.132  |   29.71  |
+studentų rūšiąvimą į dvi grupes | 0      | 0.001 | 0.018  |  0.217  |   2.286  |
