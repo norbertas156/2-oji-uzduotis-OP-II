@@ -17,12 +17,10 @@ try{
   if(!openf){
     throw file;
   }
-  auto start = std::chrono::high_resolution_clock::now(); auto st=start;
+  
 my_buffer<<openf.rdbuf();
 openf.close();
- std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
-  std::cout <<file <<".txt failo irasu nuskaitymas uztruko: "<< diff.count() << " s\n";
-
+auto start = std::chrono::high_resolution_clock::now(); auto st=start;
 getline(my_buffer, eil);
 Studentas studentas;
 int j=0;
@@ -49,6 +47,9 @@ while (getline(my_buffer, eil)){
 			throw j;
 		}   
 }
+	std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
+  std::cout <<file <<".txt failo irasu nuskaitymas uztruko: "<< diff.count() << " s\n";
+
 }
 catch(string file){
 cout<<"Neegzistuoja "<<file<<".txt "<<"failas. Duomenu spartos analize nutraukiama"<<endl;
