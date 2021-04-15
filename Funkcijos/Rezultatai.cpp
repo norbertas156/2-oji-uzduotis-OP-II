@@ -1,4 +1,5 @@
 #include "My_lib.h"
+#include "Funkcijos.h"
 
 
 void vidurkis(Studentas &studentas){
@@ -24,34 +25,17 @@ else{
 studentas.mediana=temp;
 }
 
-void sorting (vector<Studentas> &studentai){
-	//auto start = std::chrono::high_resolution_clock::now(); auto st=start;
-sort(studentai.begin(), studentai.end(),
-       [](const Studentas &a, const Studentas &b) {
-         return (a.pavarde<b.pavarde);
-       });
- //std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
-  //std::cout << "Sortinimo trukme: "<< diff.count() << " s\n";
-}
 
-void filtras (vector<Studentas> &studentai, vector<Studentas> &kietekai, vector<Studentas> &nelaimingieji, string file){
-	int Studkiekis=studentai.size();
+void filtras (vector<Studentas> &studentai, vector<Studentas> &nelaimingieji, string file){
+	vector<Studentas>::iterator it;
 	auto start = std::chrono::high_resolution_clock::now(); auto st=start;
-sort(studentai.begin(), studentai.end(),
-       [](const Studentas &a, const Studentas &b) {
-         return (a.vidurkis>b.vidurkis);
-       });
+sort(studentai.begin(), studentai.end(),compare);
 	    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
-  std::cout <<file <<".txt irasu Sortinimo trukme: "<< diff.count() << " s\n";
+  cout <<file <<".txt irasu Sortinimo trukme: "<< diff.count() << " s\n";
   auto start2 = std::chrono::high_resolution_clock::now(); auto st2=start2;
-  for(int i=0; i<Studkiekis; i++){
-	  if(studentai[i].vidurkis>=5.00){
-		  kietekai.push_back(studentai[i]);
-	  }
-	  else {
-		  nelaimingieji.push_back(studentai[i]);
-	  }
-  }
+  it=std::find_if(studentai.begin(), studentai.end(), Find);
+		  nelaimingieji.assign(it, studentai.end());
+		  studentai.erase(it, studentai.end());	  
   std::chrono::duration<double> diff2 = std::chrono::high_resolution_clock::now()-start2; // Skirtumas (s)
-  std::cout <<file <<".txt irasu dalijimo i kietekus ir nelaiminguosius trukme: "<< diff2.count() << " s\n";
+  cout <<file <<".txt irasu dalijimo i kietekus ir nelaiminguosius trukme: "<< diff2.count() << " s\n";
 }

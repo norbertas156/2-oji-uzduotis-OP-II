@@ -7,11 +7,16 @@ cout<<"Iveskite 1 spartos analize atlikti naudojant vector konteineri"<<
 "\nIveskite 2 spartos analize atlikti naudojant deque konteineri"<<
 "\nIveskite 3 spartos analize atlikti naudojant list konteineri"<<endl;
 }
+void strategija (){
+	cout<<"Iveskite 1 norint atlikti spartos analize naudojant 2 naujus konteinerius"<<
+	"\nIveskite 2 norint atlikti spartos analize naudojant 1 nauja konteineri"<<endl;
+}
 
 
 int main(){
 	string pasirinkimas;
 	int spartosP;
+	int strateg;
 	cout<<"Ar norite atlikti spartos analize(b) ar norite ivesti ranka(r)?"<<endl;
 	cin>>pasirinkimas;
 	while(pasirinkimas!="b" && pasirinkimas!="r"){
@@ -20,6 +25,15 @@ int main(){
 		cin>>pasirinkimas;
 	}
 	if(pasirinkimas=="b"){
+		strategija();
+		cin>>strateg;
+		while(strateg<1 || strateg>2){
+			cin.clear();
+			cin.ignore();
+			cout<<"Bloga ivestis. Prasome "<<endl;
+			strategija();
+			cin>>strateg;
+		}
 		pasirinkimai();
 		cin>>spartosP;
 		while(spartosP<1 || spartosP>3){
@@ -28,12 +42,11 @@ int main(){
 			cout<<"Bloga ivestis. Prasome "<<endl;
 			pasirinkimai();
 			cin>>spartosP;
-		}
-	benchmark(spartosP);
+		}	
+	benchmark(spartosP, strateg);
 	}
 	else{
 	vector <Studentas> studentai;
-	vector<Studentas> kietekai;
 	vector<Studentas> nelaimingieji;
 	cout<<"Ar norite failus generuoti failus(t-taip)?"<<endl;
 	string a;
@@ -69,7 +82,7 @@ int main(){
 		break;
 	}
 	}
-	sorting(studentai);
+	sort(studentai.begin(), studentai.end(), compare);
 	Isvedimas(studentai);
 	}
 	else{
@@ -84,13 +97,11 @@ int main(){
 			cin>>pasirinkimas;
 		}
 		if(pasirinkimas == "f"){
-			filtras(studentai,kietekai, nelaimingieji, file);
-			//sorting(kietekai);
-			//sorting(nelaimingieji);
-			FiltroIsvedimas(kietekai, nelaimingieji, file);
+			filtras(studentai, nelaimingieji, file);
+			FiltroIsvedimas(studentai, nelaimingieji, file);
 		}
 		else{
-			sorting(studentai);
+			sort(studentai.begin(), studentai.end(), compare);
 			fileIsvedimas(studentai);
 		}
 		

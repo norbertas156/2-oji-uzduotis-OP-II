@@ -56,3 +56,12 @@ cin>>n;
 	 }
 return n;
  }
+
+ bool compare (const Studentas &studentas1, const Studentas &studentas2){
+return studentas1.vidurkis>studentas2.vidurkis;
+}
+
+auto Find (const Studentas &studentas){
+		return studentas.vidurkis<5;
+	
+}
