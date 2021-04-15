@@ -92,39 +92,44 @@ g++ main_vector.cpp -o main
 ## V0.4 analizės rezultatai naudojant failus, sudarytus iš: 1000, 10000, 100000, 1000000, 10000000 įrašų
 
 ```shell
-studentai1000.txt failo irasu nuskaitymas uztruko: 0.002976 s
-studentai1000.txt irasu Sortinimo trukme: 0.000992 s
-studentai1000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.000496 s
-studentai1000.txt failo irasu ivedimas i kietekus: 0.009423 s
-studentai1000.txt failo irasu ivedimas i nelaiminguosius: 0.008928 s
+studentai1000.txt failo irasu nuskaitymas uztruko: 0.007978 s
+studentai1000.txt irasu Sortinimo trukme: 0.001001 s
+studentai1000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.000998 s
+studentai1000.txt failo irasu ivedimas i kietekus: 0.00399 s
+studentai1000.txt failo irasu ivedimas i nelaiminguosius: 0.001994 s
+Programos trukme: 0.130763
 ```
 ```shell
-studentai10000.txt failo irasu nuskaitymas uztruko: 0.017359 s
-studentai10000.txt irasu Sortinimo trukme: 0.012896 s
-studentai10000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.008433 s
-studentai10000.txt failo irasu ivedimas i kietekus: 0.046128 s
-studentai10000.txt failo irasu ivedimas i nelaiminguosius: 0.037695 s
+studentai10000.txt failo irasu nuskaitymas uztruko: 0.041888 s
+studentai10000.txt irasu Sortinimo trukme: 0.014958 s
+studentai10000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.007978 s
+studentai10000.txt failo irasu ivedimas i kietekus: 0.039896 s
+studentai10000.txt failo irasu ivedimas i nelaiminguosius: 0.039893 s
+Programos trukme: 0.350062
 ```
 ```shell
-studentai100000.txt failo irasu nuskaitymas uztruko: 0.220223 s
-studentai100000.txt irasu Sortinimo trukme: 0.162192 s
-studentai100000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.051582 s
-studentai100000.txt failo irasu ivedimas i kietekus: 0.279248 s
-studentai100000.txt failo irasu ivedimas i nelaiminguosius: 0.206831 s
+studentai100000.txt failo irasu nuskaitymas uztruko: 0.293216 s
+studentai100000.txt irasu Sortinimo trukme: 0.166556 s
+studentai100000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.050863 s
+studentai100000.txt failo irasu ivedimas i kietekus: 0.438825 s
+studentai100000.txt failo irasu ivedimas i nelaiminguosius: 0.410407 s
+Programos trukme: 1.64661
 ```
 ```shell
-studentai1000000.txt failo irasu nuskaitymas uztruko: 1.63532 s
-studentai1000000.txt irasu Sortinimo trukme: 2.06187 s
-studentai1000000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.45581 s
-studentai1000000.txt failo irasu ivedimas i kietekus: 2.73346 s
-studentai1000000.txt failo irasu ivedimas i nelaiminguosius: 1.95176 s
+studentai1000000.txt failo irasu nuskaitymas uztruko: 3.36296 s
+studentai1000000.txt irasu Sortinimo trukme: 2.08653 s
+studentai1000000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.463761 s
+studentai1000000.txt failo irasu ivedimas i kietekus: 2.98395 s
+studentai1000000.txt failo irasu ivedimas i nelaiminguosius: 2.0434 s
+Programos trukme: 14.303
 ```
 ```shell
-studentai10000000.txt failo irasu nuskaitymas uztruko: 22.2749 s
-studentai10000000.txt irasu Sortinimo trukme: 25.6804 s
-studentai10000000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 4.64403 s
-studentai10000000.txt failo irasu ivedimas i kietekus: 27.1763 s
-studentai10000000.txt failo irasu ivedimas i nelaiminguosius: 19.5409 s
+studentai10000000.txt failo irasu nuskaitymas uztruko: 31.4376 s
+studentai10000000.txt irasu Sortinimo trukme: 26.1933 s
+studentai10000000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 4.38798 s
+studentai10000000.txt failo irasu ivedimas i kietekus: 29.2662 s
+studentai10000000.txt failo irasu ivedimas i nelaiminguosius: 21.4353 s
+Programos trukme: 128.8
 ```
 # V0.5 
   
@@ -144,17 +149,17 @@ studentai10000000.txt failo irasu ivedimas i nelaiminguosius: 19.5409 s
 
 VECTOR                          |  1000  | 10000 | 100000 | 1000000 | 10000000 |
 --------------------------------|--------|-------|--------|---------|----------|
-duomenų nuskaitymą iš failų     | 0.002  | 0.017 | 0.221  |  1.635  |   22.27  |
-studentų rūšiąvimą į dvi grupes | 0.0004 | 0.008 | 0.051  |  0.455  |   4.644  |
+duomenų nuskaitymą iš failų     | 0.007  | 0.041 | 0.293  |  3.362  |   31.43  |
+studentų rūšiąvimą į dvi grupes | 0.0004 | 0.008 | 0.051  |  0.455  |   4.387  |
 --------------------------------------------------------------------------------
 LIST                            |  1000  | 10000 | 100000 | 1000000 | 10000000 |
 --------------------------------|--------|-------|--------|---------|----------|
-duomenų nuskaitymą iš failų     | 0.003  | 0.02  | 0.143  |  1.749  |   24.73  |
-studentų rūšiąvimą į dvi grupes | 0.0004 | 0.004 | 0.062  |  0.661  |   6.870  |
+duomenų nuskaitymą iš failų     | 0.008  | 0.038 | 0.296  |  3.510  |   33.19  |
+studentų rūšiąvimą į dvi grupes | 0.0004 | 0.004 | 0.062  |  0.661  |   6.584  |
 --------------------------------------------------------------------------------
 DEQUE                           |  1000  | 10000 | 100000 | 1000000 | 10000000 |
 --------------------------------|--------|-------|--------|---------|----------|
-duomenų nuskaitymą iš failų     | 0.003  | 0.023 | 0.142  |  1.702  |   23.51  |
-studentų rūšiąvimą į dvi grupes | 0.0009 | 0.005 | 0.054  |  0.551  |   6.065  |
+duomenų nuskaitymą iš failų     | 0.008  | 0.044 | 0.286  |  3.339  |   31.96  |
+studentų rūšiąvimą į dvi grupes | 0.0009 | 0.005 | 0.054  |  0.551  |   6.411  |
 
 
