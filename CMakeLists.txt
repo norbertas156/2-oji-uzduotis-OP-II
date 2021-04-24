@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD 11)
 include_directories(Funkcijos)
 
 add_executable(2UZDUOTIS
+ Funkcijos/Studentas.h
+ Funkcijos/Studentas.cpp
  Funkcijos/Benchmark.cpp
  Funkcijos/Funkcijos.h
  Funkcijos/Isvedimai.cpp

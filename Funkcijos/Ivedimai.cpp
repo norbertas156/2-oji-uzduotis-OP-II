@@ -1,8 +1,8 @@
-#include "My_lib.h"
-#include "Funkcijos.h"
+#include "Studentas.h"
+#include "Studentas.cpp"
 
-template <class X>
-void fileIvedimas (X &studentai, string file){
+
+void fileIvedimas (vector<Studentas> &studentai, string file){
 string eil;
 int pazymys;
 stringstream my_buffer;
@@ -13,30 +13,29 @@ while(!openf){
     cin>>file;
     openf.open(file+".txt");
 }
-
 my_buffer<<openf.rdbuf();
 openf.close();
 auto start = std::chrono::high_resolution_clock::now(); auto st=start;
 getline(my_buffer, eil);
-Studentas studentas;
+string vardas, pavarde;
 int j=0;
 while (getline(my_buffer, eil)){
-		studentas.pazymiai.clear();
 		j++;
 		istringstream is(eil);
-		is>>studentas.vardas>>studentas.pavarde;
+		is>>vardas>>pavarde;
+		Studentas studentas(vardas, pavarde);
 			while(is>>pazymys){
 				if(filetikrinimas(pazymys)){
-					studentas.pazymiai.push_back(pazymys);	
+					studentas.setPazymiai(pazymys);	
 				}
 				else 
 				break;		
 			}
 		if(filetikrinimas(pazymys)){
-			studentas.pazymiai.pop_back();
-		studentas.egzaminas=pazymys;
-		vidurkis(studentas);
-		mediana(studentas);
+			studentas.pasalintiPaskutiniPaz();
+		studentas.egzaminoPaz(pazymys);
+		studentas.setVidurkis();
+		studentas.setMediana();
 		studentai.push_back(studentas);	 
 		}
 		else{
@@ -49,16 +48,19 @@ std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-s
   std::cout <<file <<".txt failo irasu nuskaitymas uztruko: "<< diff.count() << " s\n";
 }
 
-void Ivedimas(Studentas &studentas){
+
+void Ivedimas (vector<Studentas> &studentai){
 	int size;
 	int pazymys;
+	string vardas, pavarde;
 	unsigned seed =std::chrono::system_clock::now().time_since_epoch().count();
 	std::mt19937 generator(seed);
 	std::uniform_int_distribution<int> distribution(1, 10);
 	cout<<"Iveskite varda"<<endl;
-	cin>>studentas.vardas;
+	cin>>vardas;
 	cout<<"Iveskite pavarde"<<endl;
-	cin>>studentas.pavarde;
+	cin>>pavarde;
+	Studentas studentas(vardas, pavarde);
 	cout<<"Ar zinote namu darbu skaiciu? (t-taip, bet kokia kita raide-ne)"<<endl;
 	string ndskz=Rtikrinimas();
 	if(ndskz=="t"){
@@ -78,21 +80,24 @@ void Ivedimas(Studentas &studentas){
                     cout<<j+1<<"-asis namu darbas: ";
 					pazymys=Sktikrinimas();
                     "\n";
-					studentas.pazymiai.push_back(pazymys);
+					studentas.setPazymiai(pazymys);
 				}
 				cout<<"Iveskite egzamino rezultata"<<endl;
-				studentas.egzaminas=Sktikrinimas();	
+				studentas.egzaminoPaz(Sktikrinimas());	
 				}
 			else{
 				cout<<"Atsitiktinai sugeneruoti namu darbai: ";
 				for(int j=0; j<size; j++){
                     int a=distribution(generator);
-					studentas.pazymiai.push_back(a);
+					studentas.setPazymiai(a);
 					cout<<a<<" ";
 					}
-				studentas.egzaminas=distribution(generator);
-				cout<<"\nAtsitiktinai sugeneruotas egzamino rezultatas: "<<studentas.egzaminas<<endl;
+				studentas.egzaminoPaz(distribution(generator));
+				cout<<"\nAtsitiktinai sugeneruotas egzamino rezultatas: "<<studentas.getEgzaminas()<<endl;
 				}
+				studentas.setVidurkis();
+				studentas.setMediana();
+				studentai.push_back(studentas);
 			}
 
 	else{
@@ -100,7 +105,7 @@ void Ivedimas(Studentas &studentas){
 		size=0;
 		cout<<"Noredami nutraukti ivedima iveskite 0!"<<endl;
 		cout<<size+1<<"-asis namu darbas"<<endl;
-		studentas.pazymiai.push_back(Sktikrinimas());
+		studentas.setPazymiai(Sktikrinimas());
 		while(true){
 			size++;
 			cout<<size+1<<"-asis namu darbas"<<endl;
@@ -109,15 +114,15 @@ void Ivedimas(Studentas &studentas){
 				break;
 			}
 			else{
-				studentas.pazymiai.push_back(pazymys);
+				studentas.setPazymiai(pazymys);
 			}
 				}
 				size--;
 				cout<<"Iveskite egzamino rezultata"<<endl;
-				studentas.egzaminas=Sktikrinimas();	
+				studentas.egzaminoPaz(Sktikrinimas());	
 							
 	}
-	
+	studentai.push_back(studentas);
 	cout<<"Ar norite ivesti dar viena studenta?(t-taip, bet kokia kita raide-ne)"<<endl;
 }
 
@@ -149,7 +154,7 @@ fd.close();
 
 template <class Z>
 void BenchmarkIvedimas (Z &studentai, string file){
-string eil;
+string eil, vardas, pavarde;
 int pazymys;
 stringstream my_buffer;
 ifstream openf;
@@ -164,26 +169,25 @@ openf.close();
  
  auto start = std::chrono::high_resolution_clock::now(); auto st=start;
 getline(my_buffer, eil);
-Studentas studentas;
 int j=0;
 while (getline(my_buffer, eil)){
-		studentas.pazymiai.clear();
 		j++;
 		istringstream is(eil);
-		is>>studentas.vardas>>studentas.pavarde;
+		is>>vardas>>pavarde;
+		Studentas studentas(vardas, pavarde);
 			while(is>>pazymys){
 				if(filetikrinimas(pazymys)){
-					studentas.pazymiai.push_back(pazymys);	
+					studentas.setPazymiai(pazymys);	
 				}
 				else 
 				break;		
 			}
 		if(filetikrinimas(pazymys)){
-			studentas.pazymiai.pop_back();
-		studentas.egzaminas=pazymys;
-		vidurkis(studentas);
-		mediana(studentas);
-		studentai.push_back(studentas);	 
+			studentas.pasalintiPaskutiniPaz();
+		studentas.egzaminoPaz(pazymys);
+		studentas.setVidurkis();
+		studentas.setMediana();
+		studentai.push_back(studentas);
 		}
 		else{
 			throw j;

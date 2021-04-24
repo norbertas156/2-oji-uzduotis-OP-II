@@ -2,16 +2,17 @@
 #include "Funkcijos.h"
 #include "Main_h.h"
 #include "Strategija2.cpp"
+#include "Studentas.h"
 
 void filtrasVector (vector<Studentas> &studentai, vector<Studentas> &kietekai, vector<Studentas> &nelaimingieji, string file){
   vector<Studentas>::iterator it;
 	auto start = std::chrono::high_resolution_clock::now(); auto st=start;
-sort(studentai.begin(), studentai.end(),compare);
+  sortByVidurkis(studentai);
 	    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
   cout <<file <<".txt irasu Sortinimo trukme: "<< diff.count() << " s\n";
   auto start2 = std::chrono::high_resolution_clock::now(); auto st2=start2;
     for(it=studentai.begin(); it!=studentai.end(); ++it){
-	  if(it->vidurkis<5.00){
+	  if(it->galVidurkis()<5.00){
 		  kietekai.assign(studentai.begin(), it);  
       nelaimingieji.assign(it, studentai.end());
       break;
@@ -24,12 +25,12 @@ sort(studentai.begin(), studentai.end(),compare);
 void filtrasDeque (deque<Studentas> &studentai, deque<Studentas> &kietekai, deque<Studentas> &nelaimingieji, string file){
   deque<Studentas>::iterator it;
 	auto start = std::chrono::high_resolution_clock::now(); auto st=start;
-  sort(studentai.begin(), studentai.end(),compare);
+  sortByVidurkis(studentai);
 	    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
   cout <<file <<".txt irasu Sortinimo trukme: "<< diff.count() << " s\n";
   auto start2 = std::chrono::high_resolution_clock::now(); auto st2=start2;
    for(it=studentai.begin(); it!=studentai.end(); ++it){
-	  if(it->vidurkis<5.00){
+	  if(it->galVidurkis()<5.00){
 		  kietekai.assign(studentai.begin(), it);  
       nelaimingieji.assign(it, studentai.end());
       break;
@@ -44,12 +45,12 @@ void filtrasDeque (deque<Studentas> &studentai, deque<Studentas> &kietekai, dequ
 void filtrasList (list<Studentas> &studentai, list<Studentas> &kietekai, list<Studentas> &nelaimingieji, string file){
     list<Studentas>::iterator it;
 	auto start = std::chrono::high_resolution_clock::now(); auto st=start;
-        studentai.sort(compare);
+  sortByVidurkisList(studentai);
 	    std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
     cout <<file <<".txt irasu Sortinimo trukme: "<< diff.count() << " s\n";
   auto start2 = std::chrono::high_resolution_clock::now(); auto st2=start2;
   for(it=studentai.begin(); it!=studentai.end(); ++it){
-	  if(it->vidurkis<5.00){
+	  if(it->galVidurkis()<5.00){
 		  kietekai.assign(studentai.begin(), it);  
           nelaimingieji.assign(it, studentai.end());
           break;
@@ -181,10 +182,7 @@ else {
     }
 
 }
-
-
-
-
 }
 }
+
 

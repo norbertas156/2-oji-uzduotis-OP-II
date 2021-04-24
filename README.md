@@ -222,6 +222,12 @@ studentų rūšiąvimą į dvi grupes | 0.0009 | 0.005 | 0.054  |  0.551  |   6.
  3. Sukurtas cmake failas
  4. Atnaujinta naudojimo instrukcija
 
+# V1.1
+
+ 1. Padaryta, kad galima generuoti faila iškarto
+ 2. Struct pakeista į class ir atnaujintas kodas, jog veiktu su class
+
+
 ## 1 strategijos atnaujinti rezultatai
 
 VECTOR                          |  1000  | 10000 | 100000 | 1000000 | 10000000 |
@@ -262,3 +268,50 @@ VECTOR                          |  1000  | 10000 | 100000 | 1000000 | 10000000 |
 --------------------------------|--------|-------|--------|---------|----------|
 duomenų nuskaitymą iš failų     | 0.007  | 0.041 | 0.268  |  3.132  |   29.71  |
 studentų rūšiąvimą į dvi grupes | 0      | 0.001 | 0.018  |  0.217  |   2.286  |
+
+## Struct prieš Class naudojant vektorius ir 1 nauja konteinerį
+
+Struct                          | 1000000 | 10000000 |
+--------------------------------|---------|----------|
+duomenų nuskaitymą iš failų     |  3.125  |   30.08  |
+Sortinimo trukme                |  2.050 | 25.51    |
+studentų rūšiąvimą į dvi grupes |  0.227  |  2.280  |
+
+
+Class                         | 1000000 | 10000000 |
+------------------------------|---------|----------|
+duomenų nuskaitymą iš failų   |  4.243  |   40.63  |
+Sortinimo trukme              |   2.158 | 26.78    |
+studentų rūšiąvimą į dvi grupes |  0.219  |  2.323  |
+
+## Naudojant optimizacijos flag'us
+
+Struct                         | 1000000 | 10000000 |
+------------------------------|---------|----------|
+O1|||
+duomenų nuskaitymą iš failų   |   2.173  |   20.40  |
+Sortinimo trukme              |   0.267 | 3.175    |
+studentų rūšiąvimą į dvi grupes |  0.137  |   1.500  |
+O2|||
+duomenų nuskaitymą iš failų   |   2.190  |   20.59  |
+Sortinimo trukme              |   0.264 | 3.159    |
+studentų rūšiąvimą į dvi grupes |   0.140  |   1.527  |
+O3|||
+duomenų nuskaitymą iš failų   |   2.183  |   20.55  |
+Sortinimo trukme              |   0.236 | 2.856    |
+studentų rūšiąvimą į dvi grupes | 0.141  |   1.496  |
+
+Class                         | 1000000 | 10000000 |
+------------------------------|---------|----------|
+O1|||
+duomenų nuskaitymą iš failų   |   2.720  |   25.36  |
+Sortinimo trukme              |   0.267 | 3.094    |
+studentų rūšiąvimą į dvi grupes |  0.140  |   1.503  |
+O2|||
+duomenų nuskaitymą iš failų   |   2.838  |   25.20  |
+Sortinimo trukme              |   0.267 | 3.158    |
+studentų rūšiąvimą į dvi grupes |  0.142  |   1.486  |
+O3|||
+duomenų nuskaitymą iš failų   |   2.651  |   25.00  |
+Sortinimo trukme              |    0.250 | 3.033    |
+studentų rūšiąvimą į dvi grupes | 0.138  |  1.500 |

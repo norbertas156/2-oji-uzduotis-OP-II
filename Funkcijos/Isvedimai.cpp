@@ -1,75 +1,78 @@
 #include "My_lib.h"
 #include "Funkcijos.h"
+#include "Studentas.h"
 
-
-void Isvedimas(vector<Studentas> &studentas){
-	int Studkiekis=studentas.size();
+template <class X> 
+void Isvedimas(X &studentas){
+	vector<Studentas>::iterator it;
 cout<<"Norite galutini pazymi vidurkiu(v), mediana(m) ar abiem(bet koks simbolis)"<<endl;
 string galutinis=Rtikrinimas();
 if(galutinis=="v"){
 	cout<<left<<setw(20)<<"Pavarde"<<left<<setw(15)<<"Vardas"<<left<<setw(15)<<"Galutinis(vid.)"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
-for(int i=0; i<Studkiekis; i++){
-	cout<<left<<setw(20)<<studentas[i].pavarde;
-	cout<<left<<setw(15)<<studentas[i].vardas;
-	cout<<left<<setw(15)<<fixed<<setprecision(2)<<studentas[i].vidurkis<<endl;
+for(it=studentas.begin(); it!=studentas.end(); ++it){
+	cout<<left<<setw(20)<<it->pavarde();
+	cout<<left<<setw(15)<<it->vardas();
+	cout<<left<<setw(15)<<fixed<<setprecision(2)<<it->galVidurkis()<<endl;
 }
 }
 else if(galutinis=="m"){
 	cout<<left<<setw(20)<<"Pavarde"<<left<<setw(15)<<"Vardas"<<left<<setw(15)<<"Galutinis(med.)"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
-for(int i=0; i<Studkiekis; i++){
-	cout<<left<<setw(20)<<studentas[i].pavarde;
-	cout<<left<<setw(15)<<studentas[i].vardas;
-	cout<<left<<setw(15)<<fixed<<setprecision(2)<<studentas[i].mediana<<endl;
+for(it=studentas.begin(); it!=studentas.end(); ++it){
+	cout<<left<<setw(20)<<it->pavarde();
+	cout<<left<<setw(15)<<it->vardas();
+	cout<<left<<setw(15)<<fixed<<setprecision(2)<<it->galMediana()<<endl;
 }
 }
 else
 {
 	cout<<left<<setw(20)<<"Pavarde"<<left<<setw(15)<<"Vardas"<<left<<setw(16)<<"Galutinis(vid.)"<<left<<setw(5)<<"Galutinis(med.)"<<endl;
     cout<<"------------------------------------------------------------------"<<endl;
-        for(int i=0; i<Studkiekis; i++){
-	    cout<<left<<setw(20)<<studentas[i].pavarde;
-	    cout<<left<<setw(15)<<studentas[i].vardas;
-	    cout<<left<<setw(16)<<fixed<<setprecision(2)<<studentas[i].vidurkis;
-	    cout<<fixed<<setprecision(2)<<studentas[i].mediana<<endl;
+        for(it=studentas.begin(); it!=studentas.end(); ++it){
+	    cout<<left<<setw(20)<<it->pavarde();
+		cout<<left<<setw(15)<<it->vardas();
+	    cout<<left<<setw(16)<<fixed<<setprecision(2)<<it->galVidurkis();
+	    cout<<fixed<<setprecision(2)<<it->galMediana()<<endl;
         }
 }
 
 }
-void fileIsvedimas(vector<Studentas> &studentas){
-ofstream pushf ("Rezultatai.txt");
 
-	int Studkiekis=studentas.size();
+template <class X>
+void fileIsvedimas(X &studentas){
+ofstream pushf ("Rezultatai.txt");
+vector<Studentas>::iterator it;
+
 cout<<"Norite galutini pazymi vidurkiu(v), mediana(m) ar abiem(bet koks simbolis)"<<endl;
 string galutinis=Rtikrinimas();
 if(galutinis=="v"){
 	pushf<<left<<setw(20)<<"Pavarde"<<left<<setw(15)<<"Vardas"<<left<<setw(15)<<"Galutinis(vid.)"<<endl;
 pushf<<"-----------------------------------------------------"<<endl;
-for(int i=0; i<Studkiekis; i++){
-	pushf<<left<<setw(20)<<studentas[i].pavarde;
-	pushf<<left<<setw(15)<<studentas[i].vardas;
-	pushf<<left<<setw(15)<<fixed<<setprecision(2)<<studentas[i].vidurkis<<endl;
+for(it=studentas.begin(); it!=studentas.end(); ++it){
+	pushf<<left<<setw(20)<<it->pavarde();
+	pushf<<left<<setw(15)<<it->vardas();
+	pushf<<left<<setw(15)<<fixed<<setprecision(2)<<it->galVidurkis()<<endl;
 }
 }
 else if(galutinis=="m"){
 	pushf<<left<<setw(20)<<"Pavarde"<<left<<setw(15)<<"Vardas"<<left<<setw(15)<<"Galutinis(med.)"<<endl;
 pushf<<"------------------------------------------------------"<<endl;
-for(int i=0; i<Studkiekis; i++){
-	pushf<<left<<setw(20)<<studentas[i].pavarde;
-	pushf<<left<<setw(15)<<studentas[i].vardas;
-	pushf<<left<<setw(15)<<fixed<<setprecision(2)<<studentas[i].mediana<<endl;
+for(it=studentas.begin(); it!=studentas.end(); ++it){
+	pushf<<left<<setw(20)<<it->pavarde();
+	pushf<<left<<setw(15)<<it->vardas();
+	pushf<<left<<setw(15)<<fixed<<setprecision(2)<<it->galMediana()<<endl;
 }
 }
 else
 {
 	pushf<<left<<setw(20)<<"Pavarde"<<left<<setw(15)<<"Vardas"<<left<<setw(16)<<"Galutinis(vid.)"<<left<<setw(5)<<"Galutinis(med.)"<<endl;
     pushf<<"------------------------------------------------------------------"<<endl;
-        for(int i=0; i<Studkiekis; i++){
-	    pushf<<left<<setw(20)<<studentas[i].pavarde;
-	    pushf<<left<<setw(15)<<studentas[i].vardas;
-	    pushf<<left<<setw(16)<<fixed<<setprecision(2)<<studentas[i].vidurkis;
-	    pushf<<fixed<<setprecision(2)<<studentas[i].mediana<<endl;
+        for(it=studentas.begin(); it!=studentas.end(); ++it){
+		pushf<<left<<setw(20)<<it->pavarde();
+		pushf<<left<<setw(15)<<it->vardas();
+		pushf<<left<<setw(15)<<fixed<<setprecision(2)<<it->galVidurkis()<<endl;
+	    pushf<<fixed<<setprecision(2)<<it->galMediana()<<endl;
         }
 }
 pushf.close();
@@ -81,10 +84,10 @@ void FiltroIsvedimas (X &kietekai, X &nelaimingieji, string file){
 	auto start = std::chrono::high_resolution_clock::now(); auto st=start;
 	pushK<<left<<setw(20)<<"Pavarde"<<left<<setw(15)<<"Vardas"<<left<<setw(15)<<"Galutinis(vid.)"<<endl;
 pushK<<"-----------------------------------------------------"<<endl;
-for(int i=0; i<kietekai.size(); i++){
-	pushK<<left<<setw(20)<<kietekai[i].pavarde;
-	pushK<<left<<setw(15)<<kietekai[i].vardas;
-	pushK<<left<<setw(15)<<fixed<<setprecision(2)<<kietekai[i].vidurkis<<endl;
+for(auto &kietekas : kietekai){
+	pushK<<left<<setw(20)<<kietekas.pavarde();
+	pushK<<left<<setw(15)<<kietekas.vardas();
+	pushK<<left<<setw(15)<<fixed<<setprecision(2)<<kietekas.galVidurkis()<<endl;
 }
 pushK.close();
 std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
@@ -92,10 +95,10 @@ std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-s
 auto start2 = std::chrono::high_resolution_clock::now(); auto st2=start2;
 pushN<<left<<setw(20)<<"Pavarde"<<left<<setw(15)<<"Vardas"<<left<<setw(15)<<"Galutinis(vid.)"<<endl;
 pushN<<"-----------------------------------------------------"<<endl;
-for(int i=0; i<nelaimingieji.size(); i++){
-	pushN<<left<<setw(20)<<nelaimingieji[i].pavarde;
-	pushN<<left<<setw(15)<<nelaimingieji[i].vardas;
-	pushN<<left<<setw(15)<<fixed<<setprecision(2)<<nelaimingieji[i].vidurkis<<endl;
+for(auto &nelaimingasis: nelaimingieji){
+	pushN<<left<<setw(20)<<nelaimingasis.pavarde();
+	pushN<<left<<setw(15)<<nelaimingasis.vardas();
+	pushN<<left<<setw(15)<<fixed<<setprecision(2)<<nelaimingasis.galVidurkis()<<endl;
 }
 pushN.close();
 std::chrono::duration<double> diff2 = std::chrono::high_resolution_clock::now()-start2; // Skirtumas (s)
@@ -104,16 +107,16 @@ std::chrono::duration<double> diff2 = std::chrono::high_resolution_clock::now()-
 
 
 void ListIsvedimas (list<Studentas> &kietekai, list<Studentas> &nelaimingieji, string file){
-	std::list<Studentas>::iterator it;
+	list<Studentas>::iterator it;
 	ofstream pushK ("Kietekai.txt", std::ofstream::out | std::ofstream::trunc);
 	ofstream pushN("Nelaimingieji.txt", std::ofstream::out | std::ofstream::trunc);
 	auto start = std::chrono::high_resolution_clock::now(); auto st=start;
 	pushK<<left<<setw(20)<<"Pavarde"<<left<<setw(15)<<"Vardas"<<left<<setw(15)<<"Galutinis(vid.)"<<endl;
 pushK<<"-----------------------------------------------------"<<endl;
 for(it=kietekai.begin(); it!=kietekai.end(); ++it){
-	pushK<<left<<setw(20)<<it->pavarde;
-	pushK<<left<<setw(15)<<it->vardas;
-	pushK<<left<<setw(15)<<fixed<<setprecision(2)<<it->vidurkis<<endl;
+	pushK<<left<<setw(20)<<it->pavarde();
+	pushK<<left<<setw(15)<<it->vardas();
+	pushK<<left<<setw(15)<<fixed<<setprecision(2)<<it->galVidurkis()<<endl;
 }
 pushK.close();
 std::chrono::duration<double> diff = std::chrono::high_resolution_clock::now()-start; // Skirtumas (s)
@@ -122,9 +125,9 @@ auto start2 = std::chrono::high_resolution_clock::now(); auto st2=start2;
 pushN<<left<<setw(20)<<"Pavarde"<<left<<setw(15)<<"Vardas"<<left<<setw(15)<<"Galutinis(vid.)"<<endl;
 pushN<<"-----------------------------------------------------"<<endl;
 for(it=nelaimingieji.begin(); it!=nelaimingieji.end(); ++it){
-	pushN<<left<<setw(20)<<it->pavarde;
-	pushN<<left<<setw(15)<<it->vardas;
-	pushN<<left<<setw(15)<<fixed<<setprecision(2)<<it->vidurkis<<endl;
+	pushN<<left<<setw(20)<<it->pavarde();
+	pushN<<left<<setw(15)<<it->vardas();
+	pushN<<left<<setw(15)<<fixed<<setprecision(2)<<it->galVidurkis()<<endl;
 }
 pushN.close();
 std::chrono::duration<double> diff2 = std::chrono::high_resolution_clock::now()-start2; // Skirtumas (s)
