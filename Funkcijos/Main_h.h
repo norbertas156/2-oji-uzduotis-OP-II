@@ -4,14 +4,20 @@
 #include "Isvedimai.cpp"
 #include "Ivedimai.cpp"
 #include "Benchmark.cpp"
+#include "Studentas.h"
 
 
-void fileIvedimas (Studentas &studentai, string file);
-void Ivedimas(Studentas &studentas);
-void BenchmarkIvedimas (Studentas &studentai, string file);
-void Isvedimas(Studentas &studentas);
-void fileIsvedimas(Studentas &studentas);
-void ListIsvedimas(list<Studentas> &studentas);
+template <class X>
+void fileIvedimas (X &studentas, string file);
+template <class X>
+void Ivedimas(X &studentas);
+template <class X>
+void BenchmarkIvedimas (X &studentas, string file);
+template <class X>
+void Isvedimas(X &studentas);
+template <class X>
+void fileIsvedimas(X &);
+void ListIsvedimas(list<Studentas> &);
 void benchmark(int pasirinkimas);
 
 #endif

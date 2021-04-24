@@ -40,17 +40,8 @@ using std::list;
 using std::deque;
 using std::exception;
 using std::remove;
+using std::istream;
 
-
-
-struct Studentas{
-string vardas;
-string pavarde;
-double vidurkis;
-int egzaminas;
-double mediana;
-vector <int>pazymiai;
-};
 
 
 

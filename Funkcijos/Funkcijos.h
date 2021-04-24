@@ -3,14 +3,17 @@
 #include "My_lib.h"
 #include "Tikrinimai.cpp"
 #include "Rezultatai.cpp"
+#include "Studentas.h"
 
 string Rtikrinimas ();
 int Sktikrinimas();
 int Paztikrinimas();
 bool filetikrinimas(int n);
-void vidurkis(Studentas &studentas);
-void mediana(Studentas &studentas);
-bool compare(const Studentas &studentas1, const Studentas &studentas2);
-auto Find (const Studentas &studentas);
+double vidurkis(vector<int> &pazymiai, int egzaminas);
+double mediana(vector<int> &pazymiai, int egzaminas);
+template <class X>
+void sortByVidurkis(X &);
+template <class X> 
+void sortByVidurkisList(X &);
 
 #endif 

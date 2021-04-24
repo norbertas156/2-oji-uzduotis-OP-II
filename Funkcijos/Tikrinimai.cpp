@@ -1,5 +1,5 @@
 #include "My_lib.h"
-
+#include "Studentas.h"
 
 string Rtikrinimas (){
 string n;
@@ -57,11 +57,11 @@ cin>>n;
 return n;
  }
 
- bool compare (const Studentas &studentas1, const Studentas &studentas2){
-return studentas1.vidurkis>studentas2.vidurkis;
+template <class X>
+void sortByVidurkis(X &studentas){
+  sort(studentas.begin(), studentas.end(), compare);
 }
-
-auto Find (const Studentas &studentas){
-		return studentas.vidurkis<5;
-	
+template <class X>
+void sortByVidurkisList(X &studentas){
+  studentas.sort(compare);
 }

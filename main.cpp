@@ -1,6 +1,7 @@
 #include "Funkcijos/My_lib.h"
 #include "Funkcijos/Main_h.h"
 #include "Funkcijos/Funkcijos.h"
+#include "Funkcijos/Studentas.h"
 
 void pasirinkimai (){
 cout<<"Iveskite 1 spartos analize atlikti naudojant vector konteineri"<<
@@ -17,6 +18,18 @@ int main(){
 	string pasirinkimas;
 	int spartosP;
 	int strateg;
+		cout<<"Ar norite failus generuoti failus(t-taip)?"<<endl;
+	string a;
+	int studSk;
+	cin>>a;
+	while(a=="t"){
+		cin.clear();
+		cout<<"Kiek studentu norite?"<<endl;
+		studSk=StudentuSK();
+		RandomIvedimas(studSk);
+		cout<<"Ar norite sugeneruoti dar viena faila(t-taip)?"<<endl;
+		cin>>a;
+	}
 	cout<<"Ar norite atlikti spartos analize(b) ar norite ivesti ranka(r)?"<<endl;
 	cin>>pasirinkimas;
 	while(pasirinkimas!="b" && pasirinkimas!="r"){
@@ -47,19 +60,7 @@ int main(){
 	}
 	else{
 	vector <Studentas> studentai;
-	vector<Studentas> nelaimingieji;
-	cout<<"Ar norite failus generuoti failus(t-taip)?"<<endl;
-	string a;
-	int studSk;
-	cin>>a;
-	while(a=="t"){
-		cin.clear();
-		cout<<"Kiek studentu norite?"<<endl;
-		studSk=StudentuSK();
-		RandomIvedimas(studSk);
-		cout<<"Ar norite sugeneruoti dar viena faila(t-taip)?"<<endl;
-		cin>>a;
-	}
+	vector <Studentas> nelaimingieji;
 
 	cout<<"Ar norite ivesti studentus ranka(r) ar is failo(f)?"<<endl;
 	string x;
@@ -73,16 +74,13 @@ int main(){
 	try{
 	if(x=="r"){
 	while(true){
-	Studentas studentas;
-	Ivedimas(studentas);
-	vidurkis(studentas);
-	mediana(studentas);
-	studentai.push_back(studentas);
+	Ivedimas(studentai);
 	if(Rtikrinimas()!="t"){
 		break;
 	}
 	}
-	sort(studentai.begin(), studentai.end(), compare);
+	
+	sortByVidurkis(studentai);
 	Isvedimas(studentai);
 	}
 	else{
@@ -101,7 +99,7 @@ int main(){
 			FiltroIsvedimas(studentai, nelaimingieji, file);
 		}
 		else{
-			sort(studentai.begin(), studentai.end(), compare);
+			sortByVidurkis(studentai);
 			fileIsvedimas(studentai);
 		}
 		
