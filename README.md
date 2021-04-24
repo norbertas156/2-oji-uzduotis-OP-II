@@ -11,7 +11,7 @@ Programa skirta apskaičiuoti vidurkį ir medianą
 
 # Galutinis programos veikimo funkcijos
 
-  1. Pasirinkus pradžioje b kodas vykdo duomenų spartos analizes 
+  1. Pasirinkus pradžioje b kodas vykdo duomenų spartos analizes, bet tam reikia failu: studentai1000.txt, studentai10000.txt, studentai100000.txt, studentai1000000.txt, studentai10000000.txt 
   2. Pasirinkus pradžioje r kodas vykdo vartotojo įvesties ir failu normalų veikima
 
 # Programos veikimo pavyzdys vykdant normalų veikima
