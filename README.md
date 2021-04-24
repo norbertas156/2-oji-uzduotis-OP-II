@@ -135,6 +135,7 @@ Programos trukme: 128.8
   
  1. Pridėta galimybė atlikti duomenų spartos analize naudojant skirtingo tipo konteinerius
  2. Pridėtas EXCEPTION gaudymas, kuris apsaugo duomenų spartos analizę
+ 3. Norint atlikti duomenų spartos analizę reikia turėti failus: studentai1000.txt, studentai10000.txt, studentai100000.txt, studentai1000000.txt, studentai10000000.txt
 
 ## V0.5 analizės rezultatai naudojant failus, sudarytus iš: 1000, 10000, 100000, 1000000, 10000000 įrašų.
 ### Kompiuterio specifikacijos: 
