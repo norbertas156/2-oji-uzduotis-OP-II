@@ -222,6 +222,12 @@ studentų rūšiąvimą į dvi grupes | 0.0009 | 0.005 | 0.054  |  0.551  |   6.
  3. Sukurtas cmake failas
  4. Atnaujinta naudojimo instrukcija
 
+# V1.1
+
+ 1. Padaryta, kad galima generuoti faila iškarto
+ 2. Struct pakeista į class ir atnaujintas kodas, jog veiktu su class
+
+
 ## 1 strategijos atnaujinti rezultatai
 
 VECTOR                          |  1000  | 10000 | 100000 | 1000000 | 10000000 |
