@@ -97,7 +97,6 @@ void Ivedimas (vector<Studentas> &studentai){
 				}
 				studentas.setVidurkis();
 				studentas.setMediana();
-				studentai.push_back(studentas);
 			}
 
 	else{
