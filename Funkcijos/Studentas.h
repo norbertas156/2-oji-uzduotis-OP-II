@@ -12,6 +12,10 @@ class Studentas {
     vector <int>pazymiai_;
     public:
     Studentas(): egzaminas_(0){}
+
+    ~Studentas();
+    Studentas(const Studentas& studentas);
+    Studentas& operator=(const Studentas& studentas);
     Studentas(const string &vardas,const string &pavarde);
     inline string vardas() const {return vardas_;}
     inline string pavarde() const {return pavarde_;}
