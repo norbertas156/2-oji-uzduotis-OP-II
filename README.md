@@ -227,6 +227,10 @@ studentų rūšiąvimą į dvi grupes | 0.0009 | 0.005 | 0.054  |  0.551  |   6.
  1. Padaryta, kad galima generuoti faila iškarto
  2. Struct pakeista į class ir atnaujintas kodas, jog veiktu su class
 
+# V1.2
+
+ 1. Pridėta prie klasių naikinimo, kopijavimo ir priskyrimo operacijų
+
 
 ## 1 strategijos atnaujinti rezultatai
 
