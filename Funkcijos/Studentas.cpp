@@ -25,10 +25,9 @@ pazymiai_=studentas.pazymiai_;
 return *this;
 }
 
-Studentas::Studentas(const string &vardas, const string &pavarde){
-    vardas_=vardas;
-    pavarde_=pavarde;
-}
+const string &Studentas::vardas() const { return vardas_;}
+
+const string &Studentas::pavarde() const { return pavarde_;}
 
 void Studentas::setPazymiai(int pazymys){
     pazymiai_.push_back(pazymys);
