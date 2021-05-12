@@ -231,7 +231,7 @@ studentų rūšiąvimą į dvi grupes | 0.0009 | 0.005 | 0.054  |  0.551  |   6.
 
  1. Pridėta prie klasių naikinimo, kopijavimo ir priskyrimo operacijų
 
-# V1.2
+# V1.5
 
  1. Sukurta bazinė klasė žmogus, kuri laiko vardą ir pavardę
 
