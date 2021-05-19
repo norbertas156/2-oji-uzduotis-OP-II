@@ -235,6 +235,11 @@ studentų rūšiąvimą į dvi grupes | 0.0009 | 0.005 | 0.054  |  0.551  |   6.
 
  1. Sukurta bazinė klasė žmogus, kuri laiko vardą ir pavardę
 
+# V2.0
+
+ 1. Pridėta doxygen dokumentacija
+ 2. Pridėti catch testai
+ 3. Pridėtas setup folderis
 
 
 ## 1 strategijos atnaujinti rezultatai

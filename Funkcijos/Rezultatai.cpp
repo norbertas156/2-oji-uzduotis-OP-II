@@ -5,12 +5,10 @@
 
 double vidurkis(vector<int> &pazymiai, int egzaminas){
 	double temp=0;
-	int size = pazymiai.size();
-
-for(int i=0; i<size; i++){
-temp+=pazymiai[i];
-}
-return ((temp/size*0.4)+(egzaminas*0.6));
+	double size = pazymiai.size();
+	double suma = std::accumulate(pazymiai.begin(), pazymiai.end(), 0);
+	temp=((suma/size*0.4)+(egzaminas*0.6));
+return temp;
 }
 
 double mediana(vector<int> &pazymiai, int egzaminas){

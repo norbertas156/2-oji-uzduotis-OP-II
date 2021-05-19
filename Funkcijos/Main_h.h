@@ -17,7 +17,10 @@ template <class X>
 void Isvedimas(X &studentas);
 template <class X>
 void fileIsvedimas(X &);
+void RandomIvedimas (int n);
 void ListIsvedimas(list<Studentas> &);
-void benchmark(int pasirinkimas);
+void benchmark(int pasirinkimas, int strategija);
+template <class X>
+void FiltroIsvedimas (X &kietekai, X &nelaimingieji, string file);
 
 #endif
