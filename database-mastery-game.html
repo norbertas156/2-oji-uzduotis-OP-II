@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Mastery Quest</title>
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --accent-color: #f093fb;
+            --success-color: #4ade80;
+            --warning-color: #fbbf24;
+            --error-color: #f87171;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #e2e8f0;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .stats-bar {
+            background: var(--bg-secondary);
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-primary);
+            border-radius: 50px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .xp { background: linear-gradient(45deg, #ffd700, #ffed4e); }
+        .level { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); }
+        .progress { background: linear-gradient(45deg, var(--success-color), #22c55e); }
+
+        .theme-toggle {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .phases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .phase-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .phase-card.completed::before {
+            transform: scaleX(1);
+        }
+
+        .phase-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .phase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .phase-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-badge {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .phase-progress {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--success-color), #22c55e);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .task-list {
+            margin-top: 1rem;
+        }
+
+        .task-item {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .task-header {
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-header:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .task-title {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .task-checkbox.completed {
+            background: var(--success-color);
+            border-color: var(--success-color);
+            color: white;
+        }
+
+        .task-content {
+            padding: 0 1rem 1rem;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .task-content.expanded {
+            display: block;
+        }
+
+        .subtask-list {
+            margin-top: 1rem;
+        }
+
+        .subtask-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .subtask-item:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .achievement-popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--success-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .achievement-popup.show {
+            transform: translateX(0);
+        }
+
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-db {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .reward-animation {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #1e293b;
+            padding: 2rem;
+            border-radius: 16px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: var(--shadow-lg);
+            z-index: 1001;
+            animation: rewardPop 0.5s ease;
+            display: none;
+        }
+
+        @keyframes rewardPop {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            animation: confetti 2s ease-out forwards;
+        }
+
+        @keyframes confetti {
+            0% { transform: translateY(0) rotateZ(0deg); opacity: 1; }
+            100% { transform: translateY(1000px) rotateZ(720deg); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .stats-container {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .phases-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <div class="floating-elements">
+        <div class="floating-db" style="top: 10%; left: 5%; font-size: 2rem;">🗄️</div>
+        <div class="floating-db" style="top: 20%; right: 10%; font-size: 1.5rem;">📊</div>
+        <div class="floating-db" style="bottom: 30%; left: 15%; font-size: 2.5rem;">🔍</div>
+        <div class="floating-db" style="bottom: 10%; right: 20%; font-size: 1.8rem;">⚡</div>
+    </div>
+
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">🗄️ Database Mastery Quest</div>
+            <div class="tagline">Level up your database skills through gamified learning!</div>
+        </div>
+    </header>
+
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-icon xp"></div>
+                <span><strong id="xp-count">0</strong> XP</span>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon level"></div>
+                <span>Level <strong id="level-count">1</strong></span>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon progress"></div>
+                <span><strong id="progress-count">0</strong>% Complete</span>
+            </div>
+            <div class="theme-toggle" onclick="toggleTheme()">
+                <span id="theme-icon">🌙</span>
+                <span id="theme-text">Dark Mode</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="phases-grid" id="phases-container">
+            <!-- Phases will be dynamically generated -->
+        </div>
+    </div>
+
+    <div class="achievement-popup" id="achievement-popup">
+        <div id="achievement-text">Achievement Unlocked!</div>
+    </div>
+
+    <div class="reward-animation" id="reward-animation">
+        🎉 +50 XP! 🎉
+    </div>
+
+    <script>
+        // Game State
+        let gameState = {
+            xp: parseInt(localStorage.getItem('dbquest-xp')) || 0,
+            level: parseInt(localStorage.getItem('dbquest-level')) || 1,
+            completedTasks: JSON.parse(localStorage.getItem('dbquest-completed')) || {},
+            theme: localStorage.getItem('dbquest-theme') || 'light'
+        };
+
+        // Phases Data
+        const phases = [
+            {
+                id: 'phase1',
+                title: 'Phase 1: Database Foundations',
+                badge: 'Beginner',
+                description: 'Master the fundamentals of database systems',
+                tasks: [
+                    {
+                        id: 'db-concepts',
+                        title: 'Database Concepts & Models',
+                        xp: 100,
+                        subtasks: [
+                            'Study what databases are and why they exist',
+                            'Compare file systems vs database systems',
+                            'Learn about data independence (logical/physical)',
+                            'Understand database users and administrators',
+                            'Explore database system architecture'
+                        ]
+                    },
+                    {
+                        id: 'db-models',
+                        title: 'Database Models Exploration',
+                        xp: 150,
+                        subtasks: [
+                            'Study hierarchical database model (tree structure)',
+                            'Learn network database model (graph structure)',
+                            'Master relational database model (tables/relations)',
+                            'Explore document databases (JSON-like structures)',
+                            'Understand key-value stores and their use cases',
+                            'Compare strengths and weaknesses of each model'
+                        ]
+                    },
+                    {
+                        id: 'acid-properties',
+                        title: 'ACID Properties Deep Dive',
+                        xp: 120,
+                        subtasks: [
+                            'Understand Atomicity with real-world examples',
+                            'Learn Consistency and integrity constraints',
+                            'Master Isolation levels and concurrent access',
+                            'Study Durability and crash recovery',
+                            'Practice identifying ACID violations',
+                            'Compare ACID vs BASE properties'
+                        ]
+                    },
+                    {
+                        id: 'sql-basics',
+                        title: 'SQL Fundamentals',
+                        xp: 200,
+                        subtasks: [
+                            'Learn SQL syntax and basic structure',
+                            'Master SELECT statements with WHERE clauses',
+                            'Practice INSERT operations with various data types',
+                            'Study UPDATE statements and conditional updates',
+                            'Learn DELETE operations and safety practices',
+                            'Understand data types (VARCHAR, INT, DATE, etc.)',
+                            'Practice with ORDER BY, LIMIT, and DISTINCT'
+                        ]
+                    },
+                    {
+                        id: 'er-diagrams',
+                        title: 'ER Diagrams & Schema Design',
+                        xp: 180,
+                        subtasks: [
+                            'Learn ER diagram symbols and notation',
+                            'Practice identifying entities and attributes',
+                            'Understand relationship types (1:1, 1:M, M:M)',
+                            'Study weak entities and identifying relationships',
+                            'Design schemas for real-world scenarios',
+                            'Convert ER diagrams to relational schemas'
+                        ]
+                    },
+                    {
+                        id: 'keys-indexes',
+                        title: 'Keys, Constraints & Indexes',
+                        xp: 160,
+                        subtasks: [
+                            'Understand primary keys and uniqueness',
+                            'Learn foreign keys and referential integrity',
+                            'Study composite keys and natural vs surrogate keys',
+                            'Master candidate keys and alternate keys',
+                            'Learn about indexes and their performance impact',
+                            'Practice creating and managing constraints'
+                        ]
+                    },
+                    {
+                        id: 'normalization',
+                        title: 'Database Normalization',
+                        xp: 220,
+                        subtasks: [
+                            'Understand the purpose of normalization',
+                            'Learn First Normal Form (1NF) rules',
+                            'Master Second Normal Form (2NF) and partial dependencies',
+                            'Study Third Normal Form (3NF) and transitive dependencies',
+                            'Practice normalization with real datasets',
+                            'Understand when to denormalize for performance'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'phase2',
+                title: 'Phase 2: Intermediate SQL & RDBMS',
+                badge: 'Intermediate',
+                description: 'Advanced SQL queries and database operations',
+                tasks: [
+                    {
+                        id: 'advanced-joins',
+                        title: 'Advanced JOIN Operations',
+                        xp: 250,
+                        subtasks: [
+                            'Master INNER JOIN with multiple conditions',
+                            'Learn LEFT/RIGHT OUTER JOINs and NULL handling',
+                            'Study FULL OUTER JOIN and its use cases',
+                            'Practice CROSS JOIN and Cartesian products',
+                            'Understand SELF JOIN for hierarchical data',
+                            'Learn about JOIN performance optimization',
+                            'Practice complex multi-table joins'
+                        ]
+                    },
+                    {
+                        id: 'aggregations-subqueries',
+                        title: 'Aggregations & Subqueries',
+                        xp: 280,
+                        subtasks: [
+                            'Master GROUP BY and HAVING clauses',
+                            'Learn aggregate functions (COUNT, SUM, AVG, MIN, MAX)',
+                            'Study correlated vs non-correlated subqueries',
+                            'Practice EXISTS and NOT EXISTS operations',
+                            'Learn IN and NOT IN with subqueries',
+                            'Master window functions (ROW_NUMBER, RANK, LAG/LEAD)',
+                            'Practice complex analytical queries'
+                        ]
+                    },
+                    {
+                        id: 'views-procedures',
+                        title: 'Views, Stored Procedures & Triggers',
+                        xp: 300,
+                        subtasks: [
+                            'Create and manage database views',
+                            'Understand updatable vs non-updatable views',
+                            'Learn stored procedure syntax and parameters',
+                            'Practice control flow in stored procedures',
+                            'Study trigger types (BEFORE, AFTER, INSTEAD OF)',
+                            'Implement business logic with triggers',
+                            'Understand performance implications'
+                        ]
+                    },
+                    {
+                        id: 'transactions-locking',
+                        title: 'Transactions & Concurrency Control',
+                        xp: 320,
+                        subtasks: [
+                            'Learn transaction lifecycle (BEGIN, COMMIT, ROLLBACK)',
+                            'Study isolation levels (READ UNCOMMITTED, READ COMMITTED, etc.)',
+                            'Understand lock types (shared, exclusive, intent locks)',
+                            'Practice deadlock detection and resolution',
+                            'Learn about dirty reads, phantom reads, and non-repeatable reads',
+                            'Study optimistic vs pessimistic locking',
+                            'Implement proper transaction handling'
+                        ]
+                    },
+                    {
+                        id: 'indexing-optimization',
+                        title: 'Indexing & Query Optimization',
+                        xp: 350,
+                        subtasks: [
+                            'Understand B-tree index structure and operations',
+                            'Learn about clustered vs non-clustered indexes',
+                            'Study composite indexes and column order',
+                            'Practice using EXPLAIN/EXPLAIN PLAN',
+                            'Learn about index selectivity and cardinality',
+                            'Study partial indexes and filtered indexes',
+                            'Optimize slow queries with proper indexing'
+                        ]
+                    },
+                    {
+                        id: 'postgresql-mysql',
+                        title: 'PostgreSQL/MySQL Deep Dive',
+                        xp: 280,
+                        subtasks: [
+                            'Learn database-specific features and extensions',
+                            'Study PostgreSQL advanced data types (JSON, arrays)',
+                            'Practice MySQL storage engines (InnoDB, MyISAM)',
+                            'Learn about database configuration and tuning',
+                            'Study backup and recovery procedures',
+                            'Practice user management and security',
+                            'Learn about database monitoring and maintenance'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'phase3',
+                title: 'Phase 3: Advanced DB Concepts & Internals',
+                badge: 'Advanced',
+                description: 'Understanding database internals and architecture',
+                tasks: [
+                    {
+                        id: 'storage-internals',
+                        title: 'Database Storage Internals',
+                        xp: 400,
+                        subtasks: [
+                            'Study disk storage and page organization',
+                            'Learn about buffer pool management',
+                            'Understand B-tree and B+ tree structures',
+                            'Study how records are stored in pages',
+                            'Learn about variable-length records and slotted pages',
+                            'Understand file organization methods',
+                            'Study compression techniques and storage optimization'
+                        ]
+                    },
+                    {
+                        id: 'query-processing',
+                        title: 'Query Planning & Execution',
+                        xp: 450,
+                        subtasks: [
+                            'Learn query parsing and syntax analysis',
+                            'Study query optimization and cost-based planning',
+                            'Understand join algorithms (nested loop, hash, sort-merge)',
+                            'Learn about access methods and scan types',
+                            'Study statistics and cardinality estimation',
+                            'Practice reading and interpreting execution plans',
+                            'Learn about adaptive query optimization'
+                        ]
+                    },
+                    {
+                        id: 'concurrency-isolation',
+                        title: 'Concurrency Control & Isolation',
+                        xp: 380,
+                        subtasks: [
+                            'Study two-phase locking protocol',
+                            'Learn about timestamp-based concurrency control',
+                            'Understand multiversion concurrency control (MVCC)',
+                            'Study deadlock detection algorithms',
+                            'Learn about lock granularity and escalation',
+                            'Practice implementing isolation levels',
+                            'Study serializable snapshot isolation'
+                        ]
+                    },
+                    {
+                        id: 'recovery-logging',
+                        title: 'Recovery & Write-Ahead Logging',
+                        xp: 420,
+                        subtasks: [
+                            'Understand the ARIES recovery algorithm',
+                            'Learn about write-ahead logging (WAL) protocol',
+                            'Study checkpoint mechanisms and recovery points',
+                            'Learn about undo and redo operations',
+                            'Study crash recovery procedures',
+                            'Understand log sequence numbers (LSNs)',
+                            'Practice implementing simple recovery algorithms'
+                        ]
+                    },
+                    {
+                        id: 'cap-consistency',
+                        title: 'CAP Theorem & Consistency Models',
+                        xp: 360,
+                        subtasks: [
+                            'Understand the CAP theorem and its implications',
+                            'Study different consistency models (strong, eventual, weak)',
+                            'Learn about partition tolerance strategies',
+                            'Study consensus algorithms (Raft, Paxos)',
+                            'Understand vector clocks and logical time',
+                            'Learn about conflict resolution strategies',
+                            'Study real-world CAP theorem applications'
+                        ]
+                    },
+                    {
+                        id: 'distributed-systems',
+                        title: 'Replication, Sharding & Distribution',
+                        xp: 500,
+                        subtasks: [
+                            'Study master-slave replication patterns',
+                            'Learn about master-master replication and conflicts',
+                            'Understand horizontal vs vertical sharding',
+                            'Study consistent hashing and data distribution',
+                            'Learn about distributed transactions and 2PC',
+                            'Study federated databases and data federation',
+                            'Practice designing distributed database systems'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'phase4',
+                title: 'Phase 4: NoSQL & Modern Data Stores',
+                badge: 'Expert',
+                description: 'Exploring modern database technologies',
+                tasks: [
+                    {
+                        id: 'document-databases',
+                        title: 'Document Databases (MongoDB)',
+                        xp: 350,
+                        subtasks: [
+                            'Learn document model and JSON/BSON storage',
+                            'Practice MongoDB CRUD operations',
+                            'Study embedded vs referenced documents',
+                            'Learn MongoDB aggregation pipeline',
+                            'Study indexing strategies in document databases',
+                            'Practice schema design for document stores',
+                            'Learn about MongoDB replication and sharding'
+                        ]
+                    },
+                    {
+                        id: 'column-family',
+                        title: 'Column-Family Stores (Cassandra)',
+                        xp: 400,
+                        subtasks: [
+                            'Understand column family data model',
+                            'Learn Cassandra Query Language (CQL)',
+                            'Study partition keys and clustering columns',
+                            'Learn about eventual consistency in Cassandra',
+                            'Study read and write paths in Cassandra',
+                            'Practice data modeling for time-series data',
+                            'Learn about Cassandra architecture and nodes'
+                        ]
+                    },
+                    {
+                        id: 'graph-databases',
+                        title: 'Graph Databases (Neo4j)',
+                        xp: 380,
+                        subtasks: [
+                            'Learn graph theory basics (nodes, edges, properties)',
+                            'Study Cypher query language',
+                            'Practice modeling relationships in graphs',
+                            'Learn about graph algorithms and traversals',
+                            'Study use cases for graph databases',
+                            'Practice building recommendation systems',
+                            'Learn about graph database performance optimization'
+                        ]
+                    },
+                    {
+                        id: 'key-value-stores',
+                        title: 'Key-Value Stores & Caching',
+                        xp: 300,
+                        subtasks: [
+                            'Study Redis data structures and operations',
+                            'Learn about in-memory vs persistent key-value stores',
+                            'Practice implementing caching strategies',
+                            'Study distributed caching and cache coherence',
+                            'Learn about cache eviction policies',
+                            'Practice building session stores and message queues',
+                            'Study consistency patterns in distributed caches'
+                        ]
+                    },
+                    {
+                        id: 'base-properties',
+                        title: 'BASE Properties & Eventual Consistency',
+                        xp: 320,
+                        subtasks: [
+                            'Understand BASE (Basically Available, Soft state, Eventual consistency)',
+                            'Study conflict resolution strategies',
+                            'Learn about vector clocks and causal consistency',
+                            'Study anti-entropy and read repair mechanisms',
+                            'Practice implementing eventual consistency',
+                            'Learn about consistency patterns (monotonic, session)',
+                            'Study real-world eventual consistency challenges'
+                        ]
+                    },
+                    {
+                        id: 'polyglot-persistence',
+                        title: 'Polyglot Persistence & Architecture',
+                        xp: 450,
+                        subtasks: [
+                            'Study microservices and database per service pattern',
+                            'Learn about choosing the right database for each use case',
+                            'Practice designing multi-database architectures',
+                            'Study data synchronization between different stores',
+                            'Learn about event sourcing and CQRS patterns',
+                            'Practice implementing saga patterns for distributed transactions',
+                            'Study data consistency across multiple databases'
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 'phase5',
+                title: 'Phase 5: Practical Projects & Systems Design',
+                badge: 'Master',
+                description: 'Real-world projects and system architecture',
+                tasks: [
+                    {
+                        id: 'blog-cms',
+                        title: 'Blog CMS with PostgreSQL',
+                        xp: 600,
+                        subtasks: [
+                            'Design database schema for users, posts, comments',
+                            'Implement user authentication and authorization',
+                            'Build REST API with proper error handling',
+                            'Implement full-text search functionality',
+                            'Add pagination and sorting features',
+                            'Implement caching layer with Redis',
+                            'Deploy with proper backup and monitoring'
+                        ]
+                    },
+                    {
+                        id: 'movie-database',
+                        title: 'Movie Database with MongoDB',
+                        xp: 550,
+                        subtasks: [
+                            'Design document schema for movies, actors, reviews',
+                            'Implement complex aggregation queries',
+                            'Build recommendation engine with graph lookups',
+                            'Implement geospatial queries for movie theaters',
+                            'Add real-time features with change streams',
+                            'Implement data validation and indexing strategies',
+                            'Build analytics dashboard with time-series data'
+                        ]
+                    },
+                    {
+                        id: 'mini-redis',
+                        title: 'Mini Redis Implementation',
+                        xp: 700,
+                        subtasks: [
+                            'Implement basic data structures (strings, lists, sets)',
+                            'Build command parser and protocol handler',
+                            'Implement persistence with RDB snapshots',
+                            'Add expiration and eviction policies',
+                            'Implement pub/sub messaging system',
+                            'Add clustering and replication features',
+                            'Build client library and connection pooling'
+                        ]
+                    },
+                    {
+                        id: 'sql-engine',
+                        title: 'Mini SQL Engine',
+                        xp: 800,
+                        subtasks: [
+                            'Build lexer and parser for SQL statements',
+                            'Implement basic storage engine with B-trees',
+                            'Add query planner and optimizer',
+                            'Implement JOIN algorithms (nested loop, hash join)',
+                            'Add transaction support with MVCC',
+                            'Implement recovery and logging',
+                            'Add network protocol and client drivers'
+                        ]
+                    },
+                    {
+                        id: 'analytics-engine',
+                        title: 'Analytics Engine (ETL + OLAP)',
+                        xp: 650,
+                        subtasks: [
+                            'Design data warehouse schema (star/snowflake)',
+                            'Build ETL pipeline with data validation',
+                            'Implement columnar storage for analytics',
+                            'Add OLAP operations (slice, dice, drill-down)',
+                            'Build real-time streaming analytics',
+                            'Implement data lineage and governance',
+                            'Create interactive dashboard with visualizations'
+                        ]
+                    },
+                    {
+                        id: 'distributed-system',
+                        title: 'Distributed Database System',
+                        xp: 900,
+                        subtasks: [
+                            'Design sharding strategy and data distribution',
+                            'Implement consensus algorithm (Raft/Paxos)',
+                            'Build distributed transaction coordinator',
+                            'Add fault tolerance and node recovery',
+                            'Implement global secondary indexes',
+                            'Build admin tools for cluster management',
+                            'Add monitoring, metrics, and alerting'
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeGame();
+            renderPhases();
+            updateStats();
+            setTheme(gameState.theme);
+        });
+
+        function initializeGame() {
+            // Set initial state
+            document.getElementById('xp-count').textContent = gameState.xp;
+            document.getElementById('level-count').textContent = gameState.level;
+            updateProgress();
+        }
+
+        function renderPhases() {
+            const container = document.getElementById('phases-container');
+            container.innerHTML = '';
+
+            phases.forEach(phase => {
+                const phaseElement = createPhaseElement(phase);
+                container.appendChild(phaseElement);
+            });
+        }
+
+        function createPhaseElement(phase) {
+            const completed = isPhaseCompleted(phase.id);
+            const progress = getPhaseProgress(phase.id);
+            
+            const phaseDiv = document.createElement('div');
+            phaseDiv.className = `phase-card ${completed ? 'completed' : ''}`;
+            
+            phaseDiv.innerHTML = `
+                <div class="phase-header">
+                    <div>
+                        <div class="phase-title">${phase.title}</div>
+                        <p class="phase-description">${phase.description}</p>
+                    </div>
+                    <div class="phase-badge">${phase.badge}</div>
+                </div>
+                <div class="phase-progress">
+                    <div class="progress-fill" style="width: ${progress}%"></div>
+                </div>
+                <div class="task-list">
+                    ${phase.tasks.map(task => createTaskElement(task, phase.id)).join('')}
+                </div>
+            `;
+            
+            return phaseDiv;
+        }
+
+        function createTaskElement(task, phaseId) {
+            const taskId = `${phaseId}-${task.id}`;
+            const completed = gameState.completedTasks[taskId] || false;
+            const subtaskProgress = getSubtaskProgress(taskId);
+            
+            return `
+                <div class="task-item">
+                    <div class="task-header" onclick="toggleTask('${taskId}')">
+                        <div class="task-title">
+                            <div class="task-checkbox ${completed ? 'completed' : ''}" onclick="event.stopPropagation(); toggleTaskCompletion('${taskId}', ${task.xp})">
+                                ${completed ? '✓' : ''}
+                            </div>
+                            ${task.title} (+${task.xp} XP)
+                        </div>
+                        <span class="expand-icon">▼</span>
+                    </div>
+                    <div class="task-content" id="content-${taskId}">
+                        <div class="subtask-list">
+                            ${task.subtasks.map((subtask, index) => `
+                                <div class="subtask-item">
+                                    <div class="task-checkbox ${getSubtaskCompleted(taskId, index) ? 'completed' : ''}" 
+                                         onclick="toggleSubtask('${taskId}', ${index})">
+                                        ${getSubtaskCompleted(taskId, index) ? '✓' : ''}
+                                    </div>
+                                    <span>${subtask}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div style="margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem;">
+                            Progress: ${subtaskProgress.completed}/${subtaskProgress.total} subtasks completed
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function toggleTask(taskId) {
+            const content = document.getElementById(`content-${taskId}`);
+            content.classList.toggle('expanded');
+        }
+
+        function toggleTaskCompletion(taskId, xp) {
+            if (!gameState.completedTasks[taskId]) {
+                gameState.completedTasks[taskId] = true;
+                addXP(xp);
+                showReward(xp);
+                showAchievement(`Task completed! +${xp} XP`);
+                createConfetti();
+            } else {
+                gameState.completedTasks[taskId] = false;
+                addXP(-xp);
+            }
+            
+            saveGame();
+            renderPhases();
+            updateStats();
+        }
+
+        function toggleSubtask(taskId, index) {
+            if (!gameState.completedTasks[`${taskId}-subtask-${index}`]) {
+                gameState.completedTasks[`${taskId}-subtask-${index}`] = true;
+                addXP(10);
+                showAchievement(`Subtask completed! +10 XP`);
+            } else {
+                gameState.completedTasks[`${taskId}-subtask-${index}`] = false;
+                addXP(-10);
+            }
+            
+            saveGame();
+            renderPhases();
+            updateStats();
+        }
+
+        function getSubtaskCompleted(taskId, index) {
+            return gameState.completedTasks[`${taskId}-subtask-${index}`] || false;
+        }
+
+        function getSubtaskProgress(taskId) {
+            const task = findTaskById(taskId);
+            if (!task) return { completed: 0, total: 0 };
+            
+            const completed = task.subtasks.filter((_, index) => 
+                getSubtaskCompleted(taskId, index)
+            ).length;
+            
+            return { completed, total: task.subtasks.length };
+        }
+
+        function findTaskById(taskId) {
+            for (const phase of phases) {
+                for (const task of phase.tasks) {
+                    if (`${phase.id}-${task.id}` === taskId) {
+                        return task;
+                    }
+                }
+            }
+            return null;
+        }
+
+        function isPhaseCompleted(phaseId) {
+            const phase = phases.find(p => p.id === phaseId);
+            return phase.tasks.every(task => 
+                gameState.completedTasks[`${phaseId}-${task.id}`]
+            );
+        }
+
+        function getPhaseProgress(phaseId) {
+            const phase = phases.find(p => p.id === phaseId);
+            const completed = phase.tasks.filter(task => 
+                gameState.completedTasks[`${phaseId}-${task.id}`]
+            ).length;
+            
+            return Math.round((completed / phase.tasks.length) * 100);
+        }
+
+        function addXP(amount) {
+            gameState.xp += amount;
+            checkLevelUp();
+        }
+
+        function checkLevelUp() {
+            const newLevel = Math.floor(gameState.xp / 1000) + 1;
+            if (newLevel > gameState.level) {
+                gameState.level = newLevel;
+                showAchievement(`🎉 Level Up! You're now level ${newLevel}! 🎉`);
+                createConfetti();
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('xp-count').textContent = gameState.xp;
+            document.getElementById('level-count').textContent = gameState.level;
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const totalTasks = phases.reduce((sum, phase) => sum + phase.tasks.length, 0);
+            const completedTasks = Object.keys(gameState.completedTasks).filter(key => 
+                !key.includes('-subtask-') && gameState.completedTasks[key]
+            ).length;
+            
+            const progress = Math.round((completedTasks / totalTasks) * 100);
+            document.getElementById('progress-count').textContent = progress;
+        }
+
+        function showReward(xp) {
+            const reward = document.getElementById('reward-animation');
+            reward.innerHTML = `🎉 +${xp} XP! 🎉`;
+            reward.style.display = 'block';
+            
+            setTimeout(() => {
+                reward.style.display = 'none';
+            }, 2000);
+        }
+
+        function showAchievement(text) {
+            const popup = document.getElementById('achievement-popup');
+            document.getElementById('achievement-text').textContent = text;
+            popup.classList.add('show');
+            
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 3000);
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 20; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = ['#667eea', '#764ba2', '#f093fb', '#4ade80'][Math.floor(Math.random() * 4)];
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 2000);
+            }
+        }
+
+        function toggleTheme() {
+            const newTheme = gameState.theme === 'light' ? 'dark' : 'light';
+            setTheme(newTheme);
+            gameState.theme = newTheme;
+            saveGame();
+        }
+
+        function setTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            const icon = document.getElementById('theme-icon');
+            const text = document.getElementById('theme-text');
+            
+            if (theme === 'dark') {
+                icon.textContent = '☀️';
+                text.textContent = 'Light Mode';
+            } else {
+                icon.textContent = '🌙';
+                text.textContent = 'Dark Mode';
+            }
+        }
+
+        function saveGame() {
+            localStorage.setItem('dbquest-xp', gameState.xp);
+            localStorage.setItem('dbquest-level', gameState.level);
+            localStorage.setItem('dbquest-completed', JSON.stringify(gameState.completedTasks));
+            localStorage.setItem('dbquest-theme', gameState.theme);
+        }
+    </script>
+</body>
+</html>
