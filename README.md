@@ -1,331 +1,266 @@
-# 2-oji-uzduotis-OP-
-Objektinio programavimo 2-oji uzduotis
-------------------------------------------------
-Programa skirta apskaičiuoti vidurkį ir medianą
+# 🍃 Smart Fridge - Kitchen Inventory Management
 
-# Kaip veikia programa
+A modern, intuitive web application for managing your kitchen inventory, tracking expiration dates, and getting recipe recommendations based on available ingredients.
 
-  1. Įvedamas vardas ir pavardė
-  2. Pasirenkamas pažymiu įvedimo būdas
-  3. Ir pasirenkamas galutinio pažymio skaičiavimo būdas(vidurkis, mediana)
+## ✨ Features
 
-# Galutinis programos veikimo funkcijos
+### 🥗 Inventory Management
+- **Track Food Items**: Add, edit, and delete items with detailed information
+- **Expiration Tracking**: Visual indicators for fresh, expiring, and expired items  
+- **Smart Categories**: Organize items by category (Dairy, Meat, Vegetables, etc.)
+- **Quantity Management**: Track quantities with flexible units
+- **Search & Filter**: Find items quickly with powerful filtering options
 
-  1. Pasirinkus pradžioje b kodas vykdo duomenų spartos analizes, bet tam reikia failu: studentai1000.txt, studentai10000.txt, studentai100000.txt, studentai1000000.txt, studentai10000000.txt 
-  2. Pasirinkus pradžioje r kodas vykdo vartotojo įvesties ir failu normalų veikima
+### 🏠 Multiple Storage Locations
+- **Flexible Storage**: Manage Refrigerator, Freezer, Pantry, Counter, and custom locations
+- **Temperature Settings**: Configure temperature for each storage location
+- **Visual Organization**: See items organized by storage location
+- **Custom Locations**: Add your own storage spaces with custom icons and settings
 
-# Programos veikimo pavyzdys vykdant normalų veikima
+### 👨‍🍳 Recipe Recommendations
+- **Smart Suggestions**: Get recipe recommendations based on available ingredients
+- **Compatibility Scoring**: See how many ingredients you have for each recipe
+- **Shopping Lists**: View missing ingredients for recipes you want to make
+- **Recipe Details**: Step-by-step instructions and ingredient lists
+- **Difficulty Levels**: Recipes categorized by difficulty (Easy, Medium, Hard)
 
-```shell
-Iveskite varda
-Deividas
-Iveskite pavarde
-Gelzinis
-Ar zinote namu darbu skaiciu? (t-taip, bet kokia kita raide-ne)
-t
-Iveskite pazymiu skaiciu
-5
-Ar norite namu darbus ivesti ranka? (t-taip, bet kokia kita raide-ne)
-n
-Atsitiktinai sugeneruoti namu darbai: 5 3 3 4 10 Atsitiktinai sugeneruotas egzamino rezultatas: 2
-Ar norite ivesti dar viena studenta?
-t
-Iveskite varda
-Jonas
-Iveskite pavarde
-Jonaitis
-Ar zinote namu darbu skaiciu? (t-taip, bet kokia kita raide-ne)
-n
-Noredami nutraukti ivedima iveskite 0!
-1-asis namu darbas
-5
-2-asis namu darbas
-7
-3-asis namu darbas
-9
-4-asis namu darbas
-9
-5-asis namu darbas
-0
-Iveskite egzamino rezultata
-6
-Ar norite ivesti dar viena studenta?
-n
-Norite galutini pazymi vidurkiu(v), mediana(m) ar abiem(a)
-v
-Pavarde   Vardas    Galutinis(vid.)
-------------------------------------------
-Gelzinis  Deividas  3.20
-Jonaitis  Jonas     6.40
-```
-Programa realizuota 2 būdais: pirmasis būdas išsaugant įvestus pažymius į C masyvą, antrasis būdas išsaugant įvestus pažymius į vektorių.
+### ⏰ Expiration Management
+- **Smart Alerts**: Visual warnings for items expiring soon or already expired
+- **Timeline Tracking**: See expiration dates with color-coded status
+- **Automatic Calculations**: Days until expiration calculated automatically
+- **Purchase Date Tracking**: Know how long items have been stored
 
-# Programos veikimo pavyzdys vykdant duomenų spartos analize
+### 📊 Dashboard & Analytics
+- **Overview Dashboard**: Quick stats and important alerts
+- **Usage Statistics**: Track your inventory patterns
+- **Storage Analytics**: See how items are distributed across locations
+- **Visual Charts**: Progress bars and status indicators
 
-```
-Ar norite atlikti spartos analize(b) ar norite ivesti ranka(r)?
-b
-Iveskite 1 norint atlikti spartos analize naudojant 2 naujus konteinerius
-Iveskite 2 norint atlikti spartos analize naudojant 1 nauja konteineri
-2
-Iveskite 1 spartos analize atlikti naudojant vector konteineri
-Iveskite 2 spartos analize atlikti naudojant deque konteineri
-Iveskite 3 spartos analize atlikti naudojant list konteineri
-1
-studentai1000.txt failo irasu nuskaitymas uztruko: 0.007006 s
-studentai1000.txt irasu Sortinimo trukme: 0.000977 s
-studentai1000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0 s
-studentai1000.txt failo irasu ivedimas i kietekus: 0.003999 s
-studentai1000.txt failo irasu ivedimas i nelaiminguosius: 0.002994 s
-Programos trukme: 0.083776
+### ⚙️ Data Management
+- **Local Storage**: All data stored securely in your browser
+- **Export/Import**: Backup and restore your data
+- **Data Statistics**: View detailed information about your inventory
+- **Privacy First**: No data sent to external servers
 
-studentai10000.txt failo irasu nuskaitymas uztruko: 0.037898 s
-studentai10000.txt irasu Sortinimo trukme: 0.013963 s
-studentai10000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.001996 s
-studentai10000.txt failo irasu ivedimas i kietekus: 0.042885 s
-studentai10000.txt failo irasu ivedimas i nelaiminguosius: 0.02293 s
-Programos trukme: 0.148602
+## 🚀 Getting Started
 
-studentai100000.txt failo irasu nuskaitymas uztruko: 0.268789 s
-studentai100000.txt irasu Sortinimo trukme: 0.157575 s
-studentai100000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.019501 s
-studentai100000.txt failo irasu ivedimas i kietekus: 0.318164 s
-studentai100000.txt failo irasu ivedimas i nelaiminguosius: 0.208948 s
-Programos trukme: 1.14353
+### Prerequisites
+- Node.js (version 16 or higher)
+- npm or yarn package manager
 
-studentai1000000.txt failo irasu nuskaitymas uztruko: 3.1321 s
-studentai1000000.txt irasu Sortinimo trukme: 2.02982 s
-studentai1000000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.223389 s
-studentai1000000.txt failo irasu ivedimas i kietekus: 2.83721 s
-studentai1000000.txt failo irasu ivedimas i nelaiminguosius: 1.99988 s
-Programos trukme: 12.099
+### Installation
 
-studentai10000000.txt failo irasu nuskaitymas uztruko: 29.7123 s
-studentai10000000.txt irasu Sortinimo trukme: 25.5751 s
-studentai10000000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 2.28666 s
-studentai10000000.txt failo irasu ivedimas i kietekus: 28.6697 s
-studentai10000000.txt failo irasu ivedimas i nelaiminguosius: 19.8364 s
-Programos trukme: 121.437
+1. **Clone or download the project files**
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser and visit:**
+   ```
+   http://localhost:3000
+   ```
+
+### Building for Production
+
+```bash
+npm run build
 ```
 
-## Galutinis įvertinimas skaičiuojamas `0.4*pazymiu_vidurkis+0.6*egzamino_pazymys`
+The built files will be in the `dist` directory.
 
-# Įdiegimas
- 1. Atsisiūskite failą iš norimo release ir išsiarchyvuokite
- 2. Poto komandinėje eilutėje įveskite:
-```shell
-cd Failas_kuriame_issaugotas_kodas
-g++ main_vector.cpp -o main
-./main
+## 📱 Usage Guide
+
+### Adding Items
+1. Click the "Add Item" button on the Dashboard or Inventory page
+2. Fill in the item details:
+   - **Name**: Item name (e.g., "Organic Milk")
+   - **Category**: Select from predefined categories
+   - **Quantity & Unit**: Amount and measurement unit
+   - **Storage Location**: Choose where the item is stored
+   - **Purchase Date**: When you bought the item
+   - **Expiration Date**: When the item expires
+   - **Icon**: Choose a visual representation
+
+### Managing Storage Locations
+1. Go to the "Storage Locations" page
+2. Add custom locations with:
+   - **Name**: Location name (e.g., "Wine Cellar")
+   - **Icon**: Visual representation
+   - **Temperature**: Storage temperature
+   - **Description**: Additional notes
+
+### Getting Recipe Recommendations
+1. Visit the "Recipes" page
+2. See recipes sorted by compatibility with your inventory
+3. Filter by:
+   - **Can Make Now**: Recipes with all ingredients available
+   - **Need Few Items**: Recipes missing only 1-2 ingredients
+4. Click on a recipe to see detailed instructions
+
+### Tracking Expiration Dates
+- **Green**: Fresh items (7+ days until expiration)
+- **Yellow**: Expiring this week (3-7 days)
+- **Orange**: Expiring soon (1-3 days)
+- **Red**: Expired items
+
+## 🎨 Screenshots
+
+### Dashboard
+- Overview of your kitchen inventory
+- Quick stats and recent alerts
+- Recipe recommendations
+- Storage location overview
+
+### Inventory Management
+- Beautiful grid layout of all items
+- Filtering and search capabilities
+- Expiration status indicators
+- Easy edit and delete actions
+
+### Recipe Recommendations
+- Smart recipe suggestions
+- Ingredient compatibility scoring
+- Missing ingredient lists
+- Detailed cooking instructions
+
+### Storage Locations
+- Visual organization of storage spaces
+- Usage statistics for each location
+- Easy management of custom locations
+
+## 🛠️ Technology Stack
+
+- **Frontend**: React 18 with hooks
+- **Styling**: Tailwind CSS for modern UI
+- **Icons**: Lucide React for beautiful icons
+- **Routing**: React Router for navigation
+- **Date Handling**: date-fns for date operations
+- **Build Tool**: Vite for fast development
+- **Storage**: Local Storage for data persistence
+
+## 📂 Project Structure
+
 ```
-# V0.2
-
- 1. Pašalintas main_array.cpp
- 2. main_vector.cpp pervadintas į main.cpp
- 3. Pridėtas failo skaitymas
- 4. Pridėtas testinis failas Kursiokai.txt
- 5. Studentai rikiuojami palei pavardes
- 6. Rezultatai saugomi į Rezultatai.txt failą
-
-# V0.3
-
- 1. Pridėta galimybė įvesti failo pavadinimą
- 2. Funkcijos išskaidytos į atskirus .cpp failus
- 3. Paspartintas rikiavimo greitis
- 4. Pridėtas EXCEPTION HANDLING
- 5. Pridėtas Funkciju failas, kuriame yra visos programa vykdancios funkcijos
-
-# V0.4 
-  
- 1. Pridėta galimybė sugeneruoti naują failą
- 2. Pridėta funkcija rikiuojanti pagal vidurkius
- 3. Pridėtas studentų rūšiavimas į kietekus ir nelaiminguosius
- 4. Pridėtas kodo greičio matavimas
-
-## V0.4 analizės rezultatai naudojant failus, sudarytus iš: 1000, 10000, 100000, 1000000, 10000000 įrašų
-
-```shell
-studentai1000.txt failo irasu nuskaitymas uztruko: 0.007978 s
-studentai1000.txt irasu Sortinimo trukme: 0.001001 s
-studentai1000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.000998 s
-studentai1000.txt failo irasu ivedimas i kietekus: 0.00399 s
-studentai1000.txt failo irasu ivedimas i nelaiminguosius: 0.001994 s
-Programos trukme: 0.130763
+smart-fridge-app/
+├── src/
+│   ├── components/          # Reusable components
+│   │   ├── Sidebar.jsx
+│   │   ├── ItemModal.jsx
+│   │   └── LocationModal.jsx
+│   ├── pages/              # Main application pages
+│   │   ├── Dashboard.jsx
+│   │   ├── Inventory.jsx
+│   │   ├── Recipes.jsx
+│   │   ├── StorageLocations.jsx
+│   │   └── Settings.jsx
+│   ├── context/            # React context for state management
+│   │   └── FridgeContext.jsx
+│   ├── App.jsx            # Main application component
+│   ├── main.jsx           # Application entry point
+│   └── index.css          # Global styles
+├── package.json           # Dependencies and scripts
+├── vite.config.js        # Vite configuration
+├── tailwind.config.js    # Tailwind CSS configuration
+└── README.md            # This file
 ```
-```shell
-studentai10000.txt failo irasu nuskaitymas uztruko: 0.041888 s
-studentai10000.txt irasu Sortinimo trukme: 0.014958 s
-studentai10000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.007978 s
-studentai10000.txt failo irasu ivedimas i kietekus: 0.039896 s
-studentai10000.txt failo irasu ivedimas i nelaiminguosius: 0.039893 s
-Programos trukme: 0.350062
+
+## 🔧 Configuration
+
+### Customizing Categories
+Edit the categories array in `src/components/ItemModal.jsx`:
+```javascript
+const categories = [
+  'Dairy', 'Meat', 'Vegetables', 'Fruits', 'Bakery', 
+  'Beverages', 'Snacks', 'Frozen', 'Pantry', 'Condiments', 'Other'
+]
 ```
-```shell
-studentai100000.txt failo irasu nuskaitymas uztruko: 0.293216 s
-studentai100000.txt irasu Sortinimo trukme: 0.166556 s
-studentai100000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.050863 s
-studentai100000.txt failo irasu ivedimas i kietekus: 0.438825 s
-studentai100000.txt failo irasu ivedimas i nelaiminguosius: 0.410407 s
-Programos trukme: 1.64661
+
+### Adding New Units
+Modify the units array in `src/components/ItemModal.jsx`:
+```javascript
+const units = [
+  'pieces', 'grams', 'kg', 'ml', 'liter', 'cups', 
+  'tbsp', 'tsp', 'oz', 'lbs', 'cans', 'bottles', 'packages', 'slices'
+]
 ```
-```shell
-studentai1000000.txt failo irasu nuskaitymas uztruko: 3.36296 s
-studentai1000000.txt irasu Sortinimo trukme: 2.08653 s
-studentai1000000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 0.463761 s
-studentai1000000.txt failo irasu ivedimas i kietekus: 2.98395 s
-studentai1000000.txt failo irasu ivedimas i nelaiminguosius: 2.0434 s
-Programos trukme: 14.303
+
+### Customizing Expiration Thresholds
+Adjust the expiration logic in `src/context/FridgeContext.jsx`:
+```javascript
+export const getExpirationStatus = (expirationDate) => {
+  // Customize the day thresholds here
+  if (daysUntilExpiration <= 3) {
+    return { status: 'expiring-soon', days: daysUntilExpiration, color: 'warning' }
+  }
+  // ... more conditions
+}
 ```
-```shell
-studentai10000000.txt failo irasu nuskaitymas uztruko: 31.4376 s
-studentai10000000.txt irasu Sortinimo trukme: 26.1933 s
-studentai10000000.txt irasu dalijimo i kietekus ir nelaiminguosius trukme: 4.38798 s
-studentai10000000.txt failo irasu ivedimas i kietekus: 29.2662 s
-studentai10000000.txt failo irasu ivedimas i nelaiminguosius: 21.4353 s
-Programos trukme: 128.8
-```
-# V0.5 
-  
- 1. Pridėta galimybė atlikti duomenų spartos analize naudojant skirtingo tipo konteinerius
- 2. Pridėtas EXCEPTION gaudymas, kuris apsaugo duomenų spartos analizę
 
-## V0.5 analizės rezultatai naudojant failus, sudarytus iš: 1000, 10000, 100000, 1000000, 10000000 įrašų.
-### Kompiuterio specifikacijos: 
+## 🎯 Features in Detail
 
-  Procesorius Intel(R) Core(TM) I5-6500 3.2 GHz
-  
-  24 Gb RAM 2133 MHz
-  
-  SSD ATA Samsung 850 SCSI
-  
-### Rezultatai
+### Smart Recipe System
+The recipe recommendation system analyzes your current inventory and:
+- Calculates compatibility percentage for each recipe
+- Identifies missing ingredients
+- Sorts recipes by how many ingredients you have
+- Provides shopping lists for missing items
 
-VECTOR                          |  1000  | 10000 | 100000 | 1000000 | 10000000 |
---------------------------------|--------|-------|--------|---------|----------|
-duomenų nuskaitymą iš failų     | 0.007  | 0.041 | 0.293  |  3.362  |   31.43  |
-studentų rūšiąvimą į dvi grupes | 0.0004 | 0.008 | 0.051  |  0.455  |   4.387  |
---------------------------------------------------------------------------------
-LIST                            |  1000  | 10000 | 100000 | 1000000 | 10000000 |
---------------------------------|--------|-------|--------|---------|----------|
-duomenų nuskaitymą iš failų     | 0.008  | 0.038 | 0.296  |  3.510  |   33.19  |
-studentų rūšiąvimą į dvi grupes | 0.0004 | 0.004 | 0.062  |  0.661  |   6.584  |
---------------------------------------------------------------------------------
-DEQUE                           |  1000  | 10000 | 100000 | 1000000 | 10000000 |
---------------------------------|--------|-------|--------|---------|----------|
-duomenų nuskaitymą iš failų     | 0.008  | 0.044 | 0.286  |  3.339  |   31.96  |
-studentų rūšiąvimą į dvi grupes | 0.0009 | 0.005 | 0.054  |  0.551  |   6.411  |
+### Expiration Management
+The app automatically:
+- Calculates days until expiration
+- Color-codes items based on freshness
+- Shows expired items prominently
+- Tracks purchase dates for better planning
 
-# V1.0
+### Data Persistence
+- All data stored locally in browser's localStorage
+- Automatic saving after each change
+- Export functionality for backups
+- Import capability to restore data
 
- 1. Pridėta galimybė atlikti duomenų spartos analize naudojant skirtingus filtravimo metodus ty. filtruojant į tik vieną naują konteinerį
- 2. Paspartintas vector, deque veikimas naudojant assign
- 3. Sukurtas cmake failas
- 4. Atnaujinta naudojimo instrukcija
+## 🌟 Pro Tips
 
-# V1.1
+1. **Regular Updates**: Update quantities as you use items
+2. **Batch Entry**: Add multiple items after grocery shopping
+3. **Check Expiration**: Review the dashboard regularly for alerts
+4. **Recipe Planning**: Use recipe recommendations for meal planning
+5. **Backup Data**: Export your data regularly as backup
 
- 1. Padaryta, kad galima generuoti faila iškarto
- 2. Struct pakeista į class ir atnaujintas kodas, jog veiktu su class
+## 🤝 Contributing
 
-# V1.2
+This is a standalone application, but you can customize it for your needs:
 
- 1. Pridėta prie klasių naikinimo, kopijavimo ir priskyrimo operacijų
+1. Fork the project
+2. Create your feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit your improvements
 
-# V1.5
+## 📄 License
 
- 1. Sukurta bazinė klasė žmogus, kuri laiko vardą ir pavardę
+This project is open source and available under the MIT License.
 
-# V2.0
+## 🙏 Acknowledgments
 
- 1. Pridėta doxygen dokumentacija
- 2. Pridėti catch testai
- 3. Pridėtas setup folderis
+- Icons provided by Lucide React
+- UI components styled with Tailwind CSS
+- Date handling powered by date-fns
+- Built with React and Vite
 
+## 📞 Support
 
-## 1 strategijos atnaujinti rezultatai
+If you encounter any issues:
+1. Check the browser console for errors
+2. Ensure you're using a modern browser
+3. Try clearing browser cache and localStorage
+4. Verify all dependencies are installed correctly
 
-VECTOR                          |  1000  | 10000 | 100000 | 1000000 | 10000000 |
---------------------------------|--------|-------|--------|---------|----------|
-duomenų nuskaitymą iš failų     | 0.008  | 0.038 | 0.268  |  3.180  |   30.06  |
-studentų rūšiąvimą į dvi grupes | 0      | 0.001 | 0.034  |  0.329  |   3.392  |
---------------------------------------------------------------------------------
-LIST                            |  1000  | 10000 | 100000 | 1000000 | 10000000 |
---------------------------------|--------|-------|--------|---------|----------|
-duomenų nuskaitymą iš failų     | 0.007  | 0.036 | 0.276  |  3.263  |   30.29  |
-studentų rūšiąvimą į dvi grupes |  0.001 | 0.003 | 0.065  |  0.642  |  6.426   |
---------------------------------------------------------------------------------
-DEQUE                           |  1000  | 10000 | 100000 | 1000000 | 10000000 |
---------------------------------|--------|-------|--------|---------|----------|
-duomenų nuskaitymą iš failų     | 0.007  | 0.036 | 0.269  |  3.163  |   31.59  |
-studentų rūšiąvimą į dvi grupes | 0      | 0.003 | 0.043  |  0.427  |   4.420  |
+---
 
-## 2 strategijos rezultatai
-
-VECTOR                          |  1000  | 10000 | 100000 | 1000000 | 10000000 |
---------------------------------|--------|-------|--------|---------|----------|
-duomenų nuskaitymą iš failų     | 0.007  | 0.036 | 0.274  |  3.134  |   30.00  |
-studentų rūšiąvimą į dvi grupes | 0      | 0.0009| 0.022  |  0.212  |   2.290  |
---------------------------------------------------------------------------------
-LIST                            |  1000  | 10000 | 100000 | 1000000 | 10000000 |
---------------------------------|--------|-------|--------|---------|----------|
-duomenų nuskaitymą iš failų     | 0.007  | 0.036 | 0.280  |  3.214  |   30.57  |
-studentų rūšiąvimą į dvi grupes | 0.0009 | 0.002 | 0.038  |  0.441  |   4.266  |
---------------------------------------------------------------------------------
-DEQUE                           |  1000  | 10000 | 100000 | 1000000 | 10000000 |
---------------------------------|--------|-------|--------|---------|----------|
-duomenų nuskaitymą iš failų     | 0.006  | 0.039 | 0.277  |  3.145  |   29.32  |
-studentų rūšiąvimą į dvi grupes | 0.0009 | 0.002 | 0.024  |  0.286  |   3.022  |
-
-## Optimizuoto Vektoriaus rezultatai(naudojant find_if)
-
-VECTOR                          |  1000  | 10000 | 100000 | 1000000 | 10000000 |
---------------------------------|--------|-------|--------|---------|----------|
-duomenų nuskaitymą iš failų     | 0.007  | 0.041 | 0.268  |  3.132  |   29.71  |
-studentų rūšiąvimą į dvi grupes | 0      | 0.001 | 0.018  |  0.217  |   2.286  |
-
-## Struct prieš Class naudojant vektorius ir 1 nauja konteinerį
-
-Struct                          | 1000000 | 10000000 |
---------------------------------|---------|----------|
-duomenų nuskaitymą iš failų     |  3.125  |   30.08  |
-Sortinimo trukme                |  2.050 | 25.51    |
-studentų rūšiąvimą į dvi grupes |  0.227  |  2.280  |
-
-
-Class                         | 1000000 | 10000000 |
-------------------------------|---------|----------|
-duomenų nuskaitymą iš failų   |  4.243  |   40.63  |
-Sortinimo trukme              |   2.158 | 26.78    |
-studentų rūšiąvimą į dvi grupes |  0.219  |  2.323  |
-
-## Naudojant optimizacijos flag'us
-
-Struct                         | 1000000 | 10000000 |
-------------------------------|---------|----------|
-O1|||
-duomenų nuskaitymą iš failų   |   2.173  |   20.40  |
-Sortinimo trukme              |   0.267 | 3.175    |
-studentų rūšiąvimą į dvi grupes |  0.137  |   1.500  |
-O2|||
-duomenų nuskaitymą iš failų   |   2.190  |   20.59  |
-Sortinimo trukme              |   0.264 | 3.159    |
-studentų rūšiąvimą į dvi grupes |   0.140  |   1.527  |
-O3|||
-duomenų nuskaitymą iš failų   |   2.183  |   20.55  |
-Sortinimo trukme              |   0.236 | 2.856    |
-studentų rūšiąvimą į dvi grupes | 0.141  |   1.496  |
-
-Class                         | 1000000 | 10000000 |
-------------------------------|---------|----------|
-O1|||
-duomenų nuskaitymą iš failų   |   2.720  |   25.36  |
-Sortinimo trukme              |   0.267 | 3.094    |
-studentų rūšiąvimą į dvi grupes |  0.140  |   1.503  |
-O2|||
-duomenų nuskaitymą iš failų   |   2.838  |   25.20  |
-Sortinimo trukme              |   0.267 | 3.158    |
-studentų rūšiąvimą į dvi grupes |  0.142  |   1.486  |
-O3|||
-duomenų nuskaitymą iš failų   |   2.651  |   25.00  |
-Sortinimo trukme              |    0.250 | 3.033    |
-studentų rūšiąvimą į dvi grupes | 0.138  |  1.500 |
+**Happy cooking and organized kitchen management! 🍳✨**
