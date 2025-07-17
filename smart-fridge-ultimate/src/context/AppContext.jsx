@@ -517,6 +517,8 @@ function appReducer(state, action) {
 
 // Utility functions
 export const getItemStatus = (item) => {
+  if (!item || !item.expirationDate) return 'unknown';
+  
   const now = new Date();
   const expiration = new Date(item.expirationDate);
   const daysUntilExpiration = differenceInDays(expiration, now);
@@ -527,6 +529,10 @@ export const getItemStatus = (item) => {
 };
 
 export const getItemsByStatus = (items) => {
+  if (!items || !Array.isArray(items)) {
+    return { fresh: 0, expiring: 0, expired: 0 };
+  }
+  
   return items.reduce((acc, item) => {
     const status = getItemStatus(item);
     acc[status] = (acc[status] || 0) + 1;
@@ -535,8 +541,16 @@ export const getItemsByStatus = (items) => {
 };
 
 export const getCompatibilityScore = (recipe, availableItems) => {
+  if (!recipe || !recipe.ingredients || !Array.isArray(recipe.ingredients) || 
+      !availableItems || !Array.isArray(availableItems)) {
+    return 0;
+  }
+  
+  if (recipe.ingredients.length === 0) return 0;
+  
   const availableIngredients = recipe.ingredients.filter(ingredient =>
     availableItems.some(item => 
+      item && item.name && ingredient && ingredient.name &&
       item.name.toLowerCase().includes(ingredient.name.toLowerCase())
     )
   );

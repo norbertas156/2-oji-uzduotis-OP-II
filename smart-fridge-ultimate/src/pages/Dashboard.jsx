@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   TrendingUp, 
@@ -21,6 +22,7 @@ import { useApp } from '../context/AppContext';
 import { getItemStatus } from '../context/AppContext';
 
 function Dashboard() {
+  const navigate = useNavigate();
   const { 
     items, 
     itemStats, 
@@ -32,11 +34,11 @@ function Dashboard() {
     setSelectedRecipe
   } = useApp();
 
-  const totalValue = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-  const averageShelfLife = items.reduce((sum, item) => {
+  const totalValue = items.reduce((sum, item) => sum + ((item.price || 0) * (item.quantity || 0)), 0);
+  const averageShelfLife = items.length > 0 ? items.reduce((sum, item) => {
     const daysLeft = differenceInDays(new Date(item.expirationDate), new Date());
     return sum + Math.max(0, daysLeft);
-  }, 0) / items.length;
+  }, 0) / items.length : 0;
 
   const recentItems = items
     .sort((a, b) => new Date(b.purchaseDate) - new Date(a.purchaseDate))
@@ -169,7 +171,7 @@ function Dashboard() {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Recent Items</h2>
             <button
-              onClick={() => window.location.href = '/inventory'}
+              onClick={() => navigate('/inventory')}
               className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 text-sm font-medium flex items-center"
             >
               View all <ArrowRight className="w-4 h-4 ml-1" />
@@ -234,7 +236,7 @@ function Dashboard() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => window.location.href = '/recipes'}
+              onClick={() => navigate('/recipes')}
               className="w-full flex items-center space-x-3 p-4 bg-accent-50 dark:bg-accent-900/20 border border-accent-200 dark:border-accent-800 rounded-sharp-lg hover:bg-accent-100 dark:hover:bg-accent-900/30 transition-colors"
             >
               <ChefHat className="w-5 h-5 text-accent-600 dark:text-accent-400" />
@@ -244,7 +246,7 @@ function Dashboard() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              onClick={() => window.location.href = '/shopping'}
+              onClick={() => navigate('/shopping')}
               className="w-full flex items-center space-x-3 p-4 bg-success-50 dark:bg-success-900/20 border border-success-200 dark:border-success-800 rounded-sharp-lg hover:bg-success-100 dark:hover:bg-success-900/30 transition-colors"
             >
               <ShoppingCart className="w-5 h-5 text-success-600 dark:text-success-400" />
@@ -325,7 +327,7 @@ function Dashboard() {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Recipe Suggestions</h2>
             <button
-              onClick={() => window.location.href = '/recipes'}
+              onClick={() => navigate('/recipes')}
               className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 text-sm font-medium flex items-center"
             >
               View all <ArrowRight className="w-4 h-4 ml-1" />

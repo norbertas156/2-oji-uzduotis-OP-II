@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import { AppProvider } from './context/AppContext';
+import { AppProvider, useApp } from './context/AppContext';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 import Dashboard from './pages/Dashboard';
@@ -11,20 +11,15 @@ import Locations from './pages/Locations';
 import Shopping from './pages/Shopping';
 import Analytics from './pages/Analytics';
 import Settings from './pages/Settings';
-import { useApp } from './context/AppContext';
 
 // Main layout component
 function AppLayout() {
-  const { ui } = useApp();
-  
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950 transition-colors duration-300">
       <div className="flex">
         <Sidebar />
         
-        <div className={`flex-1 flex flex-col min-h-screen transition-all duration-300 ${
-          ui.sidebarOpen ? 'lg:ml-0' : 'lg:ml-0'
-        }`}>
+        <div className="flex-1 flex flex-col min-h-screen">
           <Routes>
             <Route path="/" element={
               <>
@@ -100,10 +95,6 @@ function AppLayout() {
         toastOptions={{
           duration: 4000,
           style: {
-            background: 'var(--toast-bg)',
-            color: 'var(--toast-color)',
-            border: '1px solid var(--toast-border)',
-            borderRadius: '0.5rem',
             fontSize: '14px',
             padding: '12px 16px',
           },

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   Search,
@@ -16,6 +17,7 @@ import {
 import { useApp } from '../context/AppContext';
 
 function TopBar({ title, showFilters = false, onAddClick, breadcrumbs = [] }) {
+  const navigate = useNavigate();
   const { 
     ui, 
     filters, 

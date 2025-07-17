@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Home,
@@ -30,6 +31,7 @@ const navigation = [
 function Sidebar() {
   const { ui, theme, itemStats, toggleSidebar, toggleTheme } = useApp();
   const { sidebarOpen } = ui;
+  const location = useLocation();
 
   return (
     <>
@@ -123,43 +125,46 @@ function Sidebar() {
             <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto scrollbar-hide">
               {navigation.map((item, index) => {
                 const Icon = item.icon;
-                const isActive = window.location.pathname === item.href;
+                const isActive = location.pathname === item.href;
                 
                 return (
-                  <motion.a
+                  <motion.div
                     key={item.name}
-                    href={item.href}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ x: 4 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`
-                      sidebar-nav group relative
-                      ${isActive ? 'active' : ''}
-                      ${sidebarOpen ? 'justify-start' : 'justify-center lg:justify-center'}
-                    `}
                   >
-                    <Icon className={`w-5 h-5 ${isActive ? 'text-primary-600 dark:text-primary-400' : 'text-gray-500 dark:text-gray-400'} group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors`} />
-                    <span className={`${sidebarOpen ? 'block' : 'hidden lg:hidden'} font-medium`}>
-                      {item.name}
-                    </span>
-                    
-                    {/* Tooltip for collapsed state */}
-                    {!sidebarOpen && (
-                      <div className="absolute left-full ml-2 px-2 py-1 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-sharp opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 whitespace-nowrap">
+                    <Link
+                      to={item.href}
+                      className={`
+                        sidebar-nav group relative
+                        ${isActive ? 'active' : ''}
+                        ${sidebarOpen ? 'justify-start' : 'justify-center lg:justify-center'}
+                      `}
+                    >
+                      <Icon className={`w-5 h-5 ${isActive ? 'text-primary-600 dark:text-primary-400' : 'text-gray-500 dark:text-gray-400'} group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors`} />
+                      <span className={`${sidebarOpen ? 'block' : 'hidden lg:hidden'} font-medium`}>
                         {item.name}
-                      </div>
-                    )}
-                    
-                    {/* Active indicator */}
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeTab"
-                        className="absolute right-0 w-1 h-6 bg-primary-500 rounded-full"
-                      />
-                    )}
-                  </motion.a>
+                      </span>
+                      
+                      {/* Tooltip for collapsed state */}
+                      {!sidebarOpen && (
+                        <div className="absolute left-full ml-2 px-2 py-1 bg-gray-900 dark:bg-gray-700 text-white text-sm rounded-sharp opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50 whitespace-nowrap">
+                          {item.name}
+                        </div>
+                      )}
+                      
+                      {/* Active indicator */}
+                      {isActive && (
+                        <motion.div
+                          layoutId="activeTab"
+                          className="absolute right-0 w-1 h-6 bg-primary-500 rounded-full"
+                        />
+                      )}
+                    </Link>
+                  </motion.div>
                 );
               })}
             </nav>
